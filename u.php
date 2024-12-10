@@ -149,6 +149,11 @@
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
                     </span>
+
+                    <span class="fa-stack fa-sm">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
+                    </span>
                 </div>
             </div>
         </div>
