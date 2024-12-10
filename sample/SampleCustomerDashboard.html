@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="custdashboard">
+        <!--<nav class="custnavbar">
+            <div class="logo">
+                <span>Bank</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">HOME</a>
+                <a href="#">BANKING</a>
+                <a href="#">CREDIT CARD</a>
+                <a href="#">INVESTMENTS</a>
+                <a href="#">PERSONAL LOAN</a>
+                <a href="#">HOME LOAN</a>
+            </div>
+            <div class="nav-icons">
+                <button class="icon-btn"><img src="/placeholder.svg" alt="notifications"></button>
+                <button class="icon-btn"><img src="/placeholder.svg" alt="profile"></button>
+                <button class="icon-btn"><img src="/placeholder.svg" alt="settings"></button>
+            </div>
+        </nav>-->
+
+        <main class="content">
+            <div class="top-section">
+                <div class="balance-card">
+                    <div class="account-info">
+                        <p class="label">Savings Account</p>
+                        <h3 class="holder-name">Account Holder Name</h3>
+                        <p class="account-number">123 456 789 101 213 1415</p>
+                        <button class="more-btn">More</button>
+                    </div>
+                    <div class="balance-info">
+                        <h1 class="amount">00000.00</h1>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="promo-content">
+                        <h3>Get instant credit of funds anytime, anywhere.</h3>
+                        <p>With 24/7 instant loan transfer, instant and simple</p>
+                        <button class="apply-btn">Apply Now</button>
+                    </div>
+                    <div class="promo-image">
+                        <img src="lUXURA bANK.png" alt="Promotional illustration">
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-btn">
+                    <img src="/placeholder.svg" alt="Transfer">
+                    <span>Fund Transfer</span>
+                </button>
+                <button class="action-btn">
+                    <img src="/placeholder.svg" alt="Bills">
+                    <span>Pay Bills</span>
+                </button>
+                <button class="action-btn">
+                    <img src="/placeholder.svg" alt="Deposit">
+                    <span>Fixed Deposit</span>
+                </button>
+                <button class="action-btn">
+                    <img src="/placeholder.svg" alt="Credit Card">
+                    <span>Pay Credit Card Bill</span>
+                </button>
+            </div>
+
+            <div class="bottom-section">
+                <div class="transactions-section">
+                    <h2>Recent Transactions</h2>
+                    <div class="transactions-list">
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <p class="date">Today</p>
+                                <p class="merchant">KFC Restaurant</p>
+                            </div>
+                            <p class="amount debit">-600 Rs</p>
+                        </div>
+                        <!-- Repeat transaction items -->
+                    </div>
+                    <button class="more-btn">More</button>
+                </div>
+
+                <div class="statement-section">
+                    <h2>Statement</h2>
+                    <div class="quick-statement">
+                        <button class="statement-btn">
+                            <span>Generate</span>
+                            <p>Last Month Statement</p>
+                        </button>
+                        <button class="statement-btn">
+                            <span>Generate</span>
+                            <p>Last Quarter Statement</p>
+                        </button>
+                        <button class="statement-btn">
+                            <span>Generate</span>
+                            <p>Last Year Statement</p>
+                        </button>
+                    </div>
+                    <div class="custom-statement">
+                        <p>Generate Statement for specific period:</p>
+                        <div class="date-inputs">
+                            <input type="date" placeholder="From Date">
+                            <input type="date" placeholder="To Date">
+                        </div>
+                        <div class="format-options">
+                            <p>Choose the format you want</p>
+                            <div class="format-buttons">
+                                <button class="format-btn">PDF</button>
+                                <button class="format-btn">XLS</button>
+                                <button class="format-btn">CSV</button>
+                            </div>
+                        </div>
+                        <button class="generate-btn">Generate</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <style>
+            :root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #ff7675;
+    --background-color: #f5f6fa;
+    --text-color: #2d3436;
+    --card-background: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.custdashboard {
+    min-height: 100vh;
+}
+
+/* Navbar Styles
+.navbar {
+    background-color: var(--card-background);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo span {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+/* Content Styles */
+.content {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.top-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.balance-card {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.account-info .label {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.holder-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.account-number {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.more-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.promo-card {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    color: white;
+}
+
+.promo-content {
+    flex: 1;
+}
+
+.apply-btn {
+    background-color: white;
+    color: var(--secondary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.action-btn {
+    background-color: var(--card-background);
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.action-btn:hover {
+    transform: translateY(-5px);
+}
+
+/* Bottom Section */
+.bottom-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.transactions-section, .statement-section {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.transaction-info .date {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.amount.debit {
+    color: var(--secondary-color);
+}
+
+/* Statement Section */
+.quick-statement {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.statement-btn {
+    background-color: var(--background-color);
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-align: left;
+}
+
+.date-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.date-inputs input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+}
+
+.format-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.format-btn {
+    background-color: var(--background-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.generate-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+        </style>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+    // Handle quick action buttons
+    const actionButtons = document.querySelectorAll('.action-btn');
+    actionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Add animation class
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 200);
+        });
+    });
+
+    // Handle format selection
+    const formatButtons = document.querySelectorAll('.format-btn');
+    formatButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            formatButtons.forEach(btn => btn.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    // Handle statement generation
+    const generateBtn = document.querySelector('.generate-btn');
+    generateBtn.addEventListener('click', function() {
+        const fromDate = document.querySelector('input[type="date"]:first-of-type').value;
+        const toDate = document.querySelector('input[type="date"]:last-of-type').value;
+        const selectedFormat = document.querySelector('.format-btn.selected');
+
+        if (!fromDate || !toDate) {
+            alert('Please select both dates');
+            return;
+        }
+
+        if (!selectedFormat) {
+            alert('Please select a format');
+            return;
+        }
+
+        // Here you would typically make an API call to generate the statement
+        console.log('Generating statement...', {
+            fromDate,
+            toDate,
+            format: selectedFormat.textContent
+        });
+
+        // Show loading state
+        this.textContent = 'Generating...';
+        this.disabled = true;
+
+        // Simulate API call
+        setTimeout(() => {
+            this.textContent = 'Generate';
+            this.disabled = false;
+            alert('Statement generated successfully!');
+        }, 2000);
+    });
+
+    // Add hover effect to transaction items
+    const transactionItems = document.querySelectorAll('.transaction-item');
+    transactionItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#f8f9fa';
+        });
+        item.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = 'transparent';
+        });
+    });
+});
+        </script>
+    </div>
+</body>
+</html>

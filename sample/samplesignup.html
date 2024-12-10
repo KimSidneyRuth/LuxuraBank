@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            padding-top: 20px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            text-align: left;
+            background-color: #444;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px;
+        }
+        .sidebar ul li:hover {
+            background-color: #555;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: #444;
+            min-width: 200px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <!-- Walk-In Item with Dropdown -->
+            <li class="dropdown">
+                <a href="#">
+                    <i class="bx bx-list-ul"></i>
+                    <span class="links_name">Walk-In</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">Walk-In Customers</a>
+                    <a href="#">Walk-In Orders</a>
+                    <a href="#">Walk-In Feedback</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

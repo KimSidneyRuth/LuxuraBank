@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        h1::before, h1::after {
+            content: "—";
+            color: #333;
+            padding: 0 10px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-content {
+            padding: 20px;
+        }
+        .service-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .service-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .read-more {
+            color: #b36b00;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Our Services</h1>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="general-carpentry.jpg" alt="General Carpentry" class="service-image">
+                <div class="service-content">
+                    <h2 class="service-title">General Carpentry</h2>
+                    <p class="service-description">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="furniture-manufacturing.jpg" alt="Furniture Manufacturing" class="service-image">
+                <div class="service-content">
+                    <h2 class="service-title">Furniture Manufacturing</h2>
+                    <p class="service-description">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="furniture-remodeling.jpg" alt="Furniture Remodeling" class="service-image">
+                <div class="service-content">
+                    <h2 class="service-title">Furniture Remodeling</h2>
+                    <p class="service-description">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="wooden-floor.jpg" alt="Wooden Floor" class="service-image">
+                <div class="service-content">
+                    <h2 class="service-title">Wooden Floor</h2>
+                    <p class="service-description">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="wooden-furniture.jpg" alt="Wooden Furniture" class="service-image">
+                <div class="service-content">
+                    <h2 class="service-title">Wooden Furniture</h2>
+                    <p class="service-description">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="custom-work.jpg" alt="Custom Work" class="service-image">
+                <div class="service-content">
+                    <h2 class="service-title">Custom Work</h2>
+                    <p class="service-description">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

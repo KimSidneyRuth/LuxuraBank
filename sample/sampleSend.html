@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Transfer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        .trans-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        .trans-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .trans-section {
+            flex: 1;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            min-width: 300px;
+        }
+
+        .section-title {
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        .trans-form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .trans-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .trans-container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="trans-container">
+        <div class="trans-title">Money Transfer Form</div>
+        <div class="trans-section">
+            <h2 class="section-title">Sender's Information</h2>
+            <div class="trans-form-group">
+                <label for="senderName">Full Name:</label>
+                <input type="text" id="senderName" name="senderName" required>
+            </div>
+            <div class="trans-form-group">
+                <label for="senderAccount">Account Number:</label>
+                <input type="text" id="senderAccount" name="senderAccount" required>
+            </div>
+        </div>
+
+        <div class="trans-section">
+            <h2 class="section-title">Recipient's Information</h2>
+            <div class="trans-form-group">
+                <label for="recipientName">Full Name:</label>
+                <input type="text" id="recipientName" name="recipientName" required>
+            </div>
+            <div class="trans-form-group">
+                <label for="recipientAccount">Account Number:</label>
+                <input type="text" id="recipientAccount" name="recipientAccount" required>
+            </div>
+            <div class="trans-form-group">
+                <label for="bankName">Bank Name:</label>
+                <input type="text" id="bankName" name="bankName" required>
+            </div>
+        </div>
+
+        <div class="trans-section">
+            <h2 class="section-title">Transfer Details</h2>
+            <div class="trans-form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" min="0.01" step="0.01" required>
+            </div>
+            <div class="trans-form-group">
+                <label for="currency">Currency:</label>
+                <select id="currency" name="currency" required>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="JPY">JPY</option>
+                </select>
+            </div>
+            <div class="trans-form-group">
+                <label for="description">Description (Optional):</label>
+                <input type="text" id="description" name="description">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn">Transfer Money</button>
+</body>
+</html>

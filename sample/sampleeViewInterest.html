@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Customer Interests Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.customers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.customer-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.customer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.customer-card h2 {
+    background-color: #003366;
+    color: #fff;
+    margin: 0;
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
+.customer-info {
+    padding: 15px;
+}
+
+.customer-info p {
+    margin: 10px 0;
+}
+
+.interests-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.interests-list li {
+    background-color: #e6f2ff;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    color: #003366;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    padding: 10px 20px;
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #004c99;
+}
+
+.pagination-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.page-number {
+    font-size: 16px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .customers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Accessibility improvements */
+.pagination-btn:focus {
+    outline: 2px solid #003366;
+    outline-offset: 2px;
+}
+
+.customer-card:focus-within {
+    outline: 2px solid #003366;
+    outline-offset: 2px;
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bank Customer Interests Dashboard</h1>
+        </header>
+        <main>
+            <div class="customers-grid">
+                <div class="customer-card">
+                    <h2>John Doe</h2>
+                    <div class="customer-info">
+                        <p><strong>Account Number:</strong> 1234567890</p>
+                        <p><strong>Email:</strong> john.doe@example.com</p>
+                        <p><strong>Interests:</strong></p>
+                        <ul class="interests-list">
+                            <li>Savings Accounts</li>
+                            <li>Investment Planning</li>
+                            <li>Mortgage Loans</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="customer-card">
+                    <h2>Jane Smith</h2>
+                    <div class="customer-info">
+                        <p><strong>Account Number:</strong> 0987654321</p>
+                        <p><strong>Email:</strong> jane.smith@example.com</p>
+                        <p><strong>Interests:</strong></p>
+                        <ul class="interests-list">
+                            <li>Credit Cards</li>
+                            <li>Personal Loans</li>
+                            <li>Retirement Planning</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="customer-card">
+                    <h2>Bob Johnson</h2>
+                    <div class="customer-info">
+                        <p><strong>Account Number:</strong> 1357924680</p>
+                        <p><strong>Email:</strong> bob.johnson@example.com</p>
+                        <p><strong>Interests:</strong></p>
+                        <ul class="interests-list">
+                            <li>Business Loans</li>
+                            <li>Wealth Management</li>
+                            <li>Foreign Exchange</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="customer-card">
+                    <h2>Alice Brown</h2>
+                    <div class="customer-info">
+                        <p><strong>Account Number:</strong> 2468013579</p>
+                        <p><strong>Email:</strong> alice.brown@example.com</p>
+                        <p><strong>Interests:</strong></p>
+                        <ul class="interests-list">
+                            <li>Student Loans</li>
+                            <li>Mobile Banking</li>
+                            <li>Savings Accounts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="customer-card">
+                    <h2>Charlie Wilson</h2>
+                    <div class="customer-info">
+                        <p><strong>Account Number:</strong> 3692581470</p>
+                        <p><strong>Email:</strong> charlie.wilson@example.com</p>
+                        <p><strong>Interests:</strong></p>
+                        <ul class="interests-list">
+                            <li>Investment Banking</li>
+                            <li>Insurance Products</li>
+                            <li>Online Trading</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="customer-card">
+                    <h2>Eva Garcia</h2>
+                    <div class="customer-info">
+                        <p><strong>Account Number:</strong> 9876543210</p>
+                        <p><strong>Email:</strong> eva.garcia@example.com</p>
+                        <p><strong>Interests:</strong></p>
+                        <ul class="interests-list">
+                            <li>Home Equity Loans</li>
+                            <li>Retirement Accounts</li>
+                            <li>Credit Cards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+                <button class="pagination-btn" aria-label="Previous page">Previous</button>
+                <span class="page-number">Page 1 of 1</span>
+                <button class="pagination-btn" aria-label="Next page">Next</button>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Mock data for customers and their interests
+const allCustomers = [
+    { id: 1, name: "Alice Johnson", email: "alice@example.com", interests: ["Technology", "Travel", "Cooking"] },
+    { id: 2, name: "Bob Smith", email: "bob@example.com", interests: ["Sports", "Music", "Movies"] },
+    { id: 3, name: "Charlie Brown", email: "charlie@example.com", interests: ["Reading", "Gardening", "Photography"] },
+    { id: 4, name: "Diana Ross", email: "diana@example.com", interests: ["Fashion", "Art", "Yoga"] },
+    { id: 5, name: "Edward Norton", email: "edward@example.com", interests: ["Hiking", "Cooking", "Technology"] },
+    { id: 6, name: "Fiona Apple", email: "fiona@example.com", interests: ["Music", "Writing", "Painting"] },
+    { id: 7, name: "George Clooney", email: "george@example.com", interests: ["Acting", "Philanthropy", "Politics"] },
+    { id: 8, name: "Hannah Montana", email: "hannah@example.com", interests: ["Singing", "Acting", "Fashion"] },
+    { id: 9, name: "Ian McKellen", email: "ian@example.com", interests: ["Theater", "Literature", "LGBTQ+ Rights"] },
+    { id: 10, name: "Julia Roberts", email: "julia@example.com", interests: ["Acting", "Cooking", "Yoga"] },
+    { id: 11, name: "Kevin Hart", email: "kevin@example.com", interests: ["Comedy", "Fitness", "Writing"] },
+    { id: 12, name: "Laura Dern", email: "laura@example.com", interests: ["Acting", "Environmental Activism", "Photography"] }
+];
+
+const CUSTOMERS_PER_PAGE = 6;
+let currentPage = 1;
+
+const customersGrid = document.getElementById('customers-grid');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const pageNumber = document.getElementById('page-number');
+
+function displayCustomers(page) {
+    const startIndex = (page - 1) * CUSTOMERS_PER_PAGE;
+    const endIndex = startIndex + CUSTOMERS_PER_PAGE;
+    const pageCustomers = allCustomers.slice(startIndex, endIndex);
+
+    customersGrid.innerHTML = '';
+    pageCustomers.forEach(customer => {
+        const customerElement = document.createElement('div');
+        customerElement.className = 'customer-card';
+        customerElement.innerHTML = `
+            <h2>${customer.name}</h2>
+            <div class="customer-info">
+                <p><strong>Email:</strong> ${customer.email}</p>
+                <p><strong>Interests:</strong></p>
+                <ul class="interests-list">
+                    ${customer.interests.map(interest => `<li>${interest}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+        customersGrid.appendChild(customerElement);
+    });
+
+    updatePaginationState();
+}
+
+function updatePaginationState() {
+    const totalPages = Math.ceil(allCustomers.length / CUSTOMERS_PER_PAGE);
+    pageNumber.textContent = `Page ${currentPage} of ${totalPages}`;
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+}
+
+function goToPrevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        displayCustomers(currentPage);
+    }
+}
+
+function goToNextPage() {
+    const totalPages = Math.ceil(allCustomers.length / CUSTOMERS_PER_PAGE);
+    if (currentPage < totalPages) {
+        currentPage++;
+        displayCustomers(currentPage);
+    }
+}
+
+// Event listeners
+prevBtn.addEventListener('click', goToPrevPage);
+nextBtn.addEventListener('click', goToNextPage);
+
+// Initial display
+displayCustomers(currentPage);
+
+
+    </script>
+</body>
+</html>
+

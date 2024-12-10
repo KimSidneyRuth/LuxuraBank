@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/placeholder.svg" alt="Logo" width="32" height="32">
+                <span>Norsk Timeregistrering</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">
+                    <i class="material-icons">person</i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i class="material-icons">group</i>
+                    <span>Users</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="material-icons">settings</i>
+                    <span>Control panel</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="material-icons">folder</i>
+                    <span>Projects</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="material-icons">task</i>
+                    <span>Tasks</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="material-icons">description</i>
+                    <span>Logs</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="material-icons">chat</i>
+                    <span>Group chats</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="material-icons">bar_chart</i>
+                    <span>Reports</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="material-icons">search</i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-profile">
+                    <i class="material-icons">notifications</i>
+                    <img src="/placeholder.svg" alt="Profile" class="profile-img">
+                    <span>Luke Andre</span>
+                    <i class="material-icons">arrow_drop_down</i>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content">
+                <div class="tabs">
+                    <button class="tab active">Members</button>
+                    <button class="tab">Admins</button>
+                </div>
+
+                <div class="table-actions">
+                    <div class="action-buttons">
+                        <button class="btn primary">Add new</button>
+                        <button class="btn secondary">Import members</button>
+                        <button class="btn secondary">Export members (Excel)</button>
+                    </div>
+                    <button class="btn filter">
+                        <i class="material-icons">filter_list</i>
+                        Filter
+                    </button>
+                </div>
+
+                <table class="members-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Member name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Operation</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="membersTableBody">
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Sample member data
+    const members = [
+        {
+            photo: '/placeholder.svg',
+            name: 'Eric Dyer',
+            mobile: '+1 384 25 84',
+            email: 'ericdyer@gmail.org',
+            status: 'active'
+        },
+        {
+            photo: '/placeholder.svg',
+            name: 'Helen Assistant',
+            mobile: '+1 384 22 29',
+            email: 'helen@gmail.com',
+            status: 'active'
+        },
+        {
+            photo: '/placeholder.svg',
+            name: 'Michael Campbell',
+            mobile: '+1 456 32 23',
+            email: 'camp@hotmail.com',
+            status: 'inactive'
+        },
+        {
+            photo: '/placeholder.svg',
+            name: 'Ashley Williams',
+            mobile: '+1 984 44 11',
+            email: 'williams.ash@gmail.com',
+            status: 'active'
+        }
+    ];
+
+    const tableBody = document.getElementById('membersTableBody');
+
+    // Populate table with member data
+    members.forEach(member => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <img src="${member.photo}" alt="${member.name}" width="32" height="32" style="border-radius: 50%">
+            </td>
+            <td>${member.name}</td>
+            <td>${member.mobile}</td>
+            <td>${member.email}</td>
+            <td>
+                <span class="status-badge ${member.status}">
+                    ${member.status.charAt(0).toUpperCase() + member.status.slice(1)}
+                </span>
+            </td>
+            <td>
+                <div class="operation-icons">
+                    <i class="material-icons">edit</i>
+                    <i class="material-icons">key</i>
+                    <i class="material-icons">delete</i>
+                </div>
+            </td>
+            <td>
+                <button class="action-btn">More</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Search functionality
+    const searchInput = document.querySelector('.search-bar input');
+    searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const rows = tableBody.getElementsByTagName('tr');
+        
+        Array.from(rows).forEach(row => {
+            const name = row.children[1].textContent.toLowerCase();
+            const email = row.children[3].textContent.toLowerCase();
+            const visible = name.includes(searchTerm) || email.includes(searchTerm);
+            row.style.display = visible ? '' : 'none';
+        });
+    });
+
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Add click handlers for operation icons
+    document.querySelectorAll('.operation-icons i').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const action = this.textContent;
+            const memberName = this.closest('tr').children[1].textContent;
+            alert(`${action} action for ${memberName}`);
+        });
+    });
+});
+    </script>
+    <style>
+        :root {
+    --primary-color: #6c5ce7;
+    --sidebar-width: 250px;
+    --header-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f6fa;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    font-weight: 600;
+}
+
+.nav-menu {
+    margin-top: 2rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+}
+
+.top-bar {
+    height: var(--header-height);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f5f6fa;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.search-bar input {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+/* Content Area Styles */
+.content {
+    padding: 2rem;
+}
+
+.tabs {
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+}
+
+.tab.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.table-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn.secondary {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.btn.filter {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+/* Table Styles */
+.members-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.members-table th,
+.members-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.members-table th {
+    font-weight: 500;
+    color: #666;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+}
+
+.status-badge.active {
+    background-color: #e1f7e3;
+    color: #2ecc71;
+}
+
+.status-badge.inactive {
+    background-color: #ffe9e9;
+    color: #e74c3c;
+}
+
+.operation-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.operation-icons i {
+    cursor: pointer;
+    color: #666;
+}
+
+.action-btn {
+    padding: 0.25rem 0.75rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+    </style>
+</body>
+</html>
