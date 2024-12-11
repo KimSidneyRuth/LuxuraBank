@@ -133,9 +133,10 @@ if (isset($_POST['Register'])) {
 
             $data_check = mysqli_query($con, $insertQuery);
             if ($data_check) {
-                $subject = "Customer ID";
-                $message = "Dear, $firstName, you are now registerd in Luxura Bank. This is your user id is <b>$userId</b>.  To access all features, verify your account.";
-                if(sendMail($email, $subject, $message)){
+                $subject = "Sucessfully Registered!";
+                $message = "Dear, $firstName, you are now registerd in Luxura Bank. Your user id is <b>$userId</b>.  To access all features, verify your account.";
+                $message2 = "Dear, $firstName, your account number is  <b>$acc_no</b> . Keep your information secured. To access all features, verify your account.";
+                if(sendMail($email, $subject, $message, $message2)){
                     
                     $info = "We've sent your account number to your email - $email.";
                     $_SESSION['info'] = $info;
@@ -149,7 +150,7 @@ if (isset($_POST['Register'])) {
                 }
                 if ($data_check) {
                     $subject = "Account Number";
-                    $message = "Dear, $firstName, your account number is  <b>$acc_no</b>. Keep your information secured. To access all features, verify your account.";
+                    $message = "Dear, $firstName, your account number is  <b>$acc_no</b> for your . Keep your information secured. To access all features, verify your account.";
                     if(sendMail($email, $subject, $message)){
                         
                         $info = "We've sent your account number to your email - $email.";
