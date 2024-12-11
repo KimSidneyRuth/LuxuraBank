@@ -237,7 +237,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
             </div>
           
             <div class="url">
-                <h1><a href="acc-changePasss.php">Password</a></h1>
+                <h1><a href="acc-pass.php">Password</a></h1>
                 <hr align="center">
             </div>
         </div>

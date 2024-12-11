@@ -58,10 +58,12 @@ if (isset($_POST['send_code'])) {
             $run_query = mysqli_query($con, $insert_code);
             
             if ($run_query) {
+              
                 $subject = "Password Reset Code";
-                $message = "Your password reset code is <b>$code</b>";
+                $message = "Dear $role, your password reset code is <b>$code</b>. Thank You";
                 if (sendMail($email, $subject, $message)) {
                     $_SESSION['info'] = "We've sent a password reset OTP to your email - $email";
+                 
                     $_SESSION['email'] = $email;
                     header("Location: admin-ChangePasss.php"); // Redirect to changePass.php
                     exit(); // Stop further execution after redirection

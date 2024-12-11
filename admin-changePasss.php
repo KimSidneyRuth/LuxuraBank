@@ -52,6 +52,7 @@ if(isset($_POST['verify_code'])){
     } else {
         if(strlen($password) < 8) {
             $errors['password'] = "Password must be at least 8 characters long!";
+           
         } else {
             $code = 0;
             $email = $_SESSION['email']; 
@@ -59,7 +60,10 @@ if(isset($_POST['verify_code'])){
             $update_pass = "UPDATE admin SET code = $code, password = '$encpass' WHERE email = '$email'";
             $run_query = mysqli_query($con, $update_pass);
             if($run_query){
-                $_SESSION['info'] = "Your password has been changed.";
+              /*echo "<script>
+              alert('Your password has been successfully changed.');
+              window.location.href = 'adminAccPass.php';
+            </script>";*/
                 header('Location: adminAccPass.php');
             } else {
                 $errors['db-error'] = "Failed to change your password!";
@@ -176,9 +180,9 @@ if(isset($_POST['verify_code'])){
           <i class="bx bx-menu sidebarBtn"></i>
           <span class="dashboard">Account Settings</span>
         </div>
-        <div class="search-box">
-          <input type="text" placeholder="Search..." />
-          <i class="bx bx-search"></i>
+        <div class="searh-box">
+          
+          <img src="img/luxura-nav.png" alt="">
         </div>
 
         <!--<div class="search-box">
@@ -286,7 +290,7 @@ if(isset($_POST['verify_code'])){
     <div class="sidenav">
         <div class="sidenav-url">
             <div class="url">
-                <h2><a href="acc-settingsProfile.php">Profile</a></h2>
+                <h2><a href="admin-accSettings.php">Profile</a></h2>
                 <hr align="center">
             </div>
             <div class="url">

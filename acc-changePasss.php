@@ -59,7 +59,7 @@ if (isset($_POST['send_code'])) {
             
             if ($run_query) {
                 $subject = "Password Reset Code";
-                $message = "Your password reset code is <b>$code</b>";
+                $message = "Dear, $name , your password reset code is <b>$code</b>. Thank You";
                 if (sendMail($email, $subject, $message)) {
                     $_SESSION['info'] = "We've sent a password reset OTP to your email - $email";
                     $_SESSION['email'] = $email;
@@ -186,9 +186,9 @@ if (isset($_POST['send_code'])) {
           <i class="bx bx-menu sidebarBtn"></i>
           <span class="dashboard">Account Settings</span>
         </div>
-        <div class="search-box">
-          <input type="text" placeholder="Search..." />
-          <i class="bx bx-search"></i>
+        <div class="searh-box">
+          
+          <img src="img/luxura-nav.png" alt="">
         </div>
 
         <!--<div class="search-box">

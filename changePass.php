@@ -77,8 +77,12 @@ if(isset($_POST['verify_code'])){
             $update_pass = "UPDATE user SET password_code = $code, password = '$encpass' WHERE email = '$email'";
             $run_query = mysqli_query($con, $update_pass);
             if($run_query){
-                $_SESSION['info'] = "Your password has been changed.";
-                header('Location: acc-pass.php');
+               // $_SESSION['info'] = "Your password has been changed.";
+                echo "<script>
+                        alert('Your password has been successfully changed.');
+                        window.location.href = 'acc-pass.php';
+                      </script>";
+                
             } else {
                 $errors['db-error'] = "Failed to change your password!";
             }

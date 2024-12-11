@@ -160,6 +160,7 @@ if (isset($_POST['Register'])) {
                         $_SESSION['accountType'] = $user_data['accountType'];
                         /*header('location: user-otp.php');*/
                         header('location: login-user.php');
+                        echo "alert('Registered Successfully')";
                         exit();
                     }
             } else {
@@ -560,6 +561,7 @@ if (isset($_POST['login'])) {
             $_SESSION['id'] = $admin_data['id'];
             $_SESSION['role'] = 'admin';
             $_SESSION['name'] = $admin_data['name'];
+            echo "alert('Login Successfully')";
             header('location: admin-dash.php'); // Redirect admin to dashboard
             exit();
         } else {
@@ -593,10 +595,7 @@ if (isset($_POST['login'])) {
 
                 header('location: customer-side.php'); 
                 exit();
-            } else {
-                $errors['login-error'] = "Incorrect Password or User ID!";
-                exit();
-            }
+            } 
         } else {
             $errors['login-error'] = "Unrecognized user type!";
             exit();

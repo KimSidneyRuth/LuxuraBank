@@ -144,9 +144,9 @@ $email = $_SESSION['email'];
           <i class="bx bx-menu sidebarBtn"></i>
           <span class="dashboard">Dashboard</span>
         </div>
-        <div class="search-box">
-          <input type="text" placeholder="Search..." />
-          <i class="bx bx-search"></i>
+        <div class="searh-box">
+          
+          <img src="img/luxura-nav.png" alt="">
         </div>
         <div class="profile-dropdown">
         <div onclick="toggle()" class="profile-dropdown-btn">
@@ -222,10 +222,7 @@ $email = $_SESSION['email'];
                 <a href="#profiles" class="active">Profile</a>
                 <hr align="center">
             </div>
-            <div class="url">
-                <a href="#settings">Settings</a>
-                <hr align="center">
-            </div>
+            
             <div class="url">
                 <a href="adminAccPass.php">Password</a>
                 <hr align="center">
