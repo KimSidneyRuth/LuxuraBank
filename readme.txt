@@ -1,6 +1,3 @@
-Thanks for downloading this theme!
+yung may acc at customer sa php file, for customer yon.
 
-Theme Name: Bell
-Theme URL: https://bootstrapmade.com/bell-free-bootstrap-4-template/
-Author: BootstrapMade.com
-Author URL: https://bootstrapmade.com
+yung admin, for admin
