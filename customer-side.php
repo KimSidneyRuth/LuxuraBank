@@ -1,5 +1,8 @@
 <?php
 include "connection.php";
+include 'website_background.php';
+include 'website_logo.php';
+
 session_start();
 
 
@@ -53,18 +56,22 @@ if ($db->connect_error) {
 
 
 
-
+    include 'website_color.php';
 ?>
 
 <style>
  .sidebar{
     position: fixed;
     top:0;
+    
  }
+
+ 
+
 </style>
 
 
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" >
   <head>
     <meta charset="UTF-8" />
     <title> Customer Dashboard | Luxura Bank</title>
@@ -86,57 +93,69 @@ if ($db->connect_error) {
     <div class="sidebar">
       <div class="logo-details">
        
-        <span class="logo_name"><div id="kim" style="text-align: center; margin-bottom: 20px; margin-top:10px">
+        <!--<span class="logo_name"><div id="kim" style="text-align: center; margin-bottom: 20px; margin-top:10px">
                  <img src=" lux-nav.png" alt="" style="width: 170px;">
-                        </div></span>
+                        </div></span>-->
+                        <span>
+                        <?php
+    // Check if the logo image path is available
+    if (isset($logoImagePath) && !empty($logoImagePath)) {
+      echo '<img src="' . $logoImagePath . '" alt="Logo" id="logo" style="text-align: center; margin-bottom: 20px; margin-top:10px; width: 170px;"  >';
+  } else {
+      echo '<p>No logo image found.</p>';
+  }
+  ?>
+                        </span>
       </div>
+      
       <ul class="nav-links">
         <li>
           <a href="customer-side.php" class = "active">
             <i class="bx bx-grid-alt"></i>
-            <span class="links_name">Dashboard</span>
+            <span class="links_name" style="color: <?php echo FONT_COLOR; ?>">Dashboard</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-user"></i>
-            <span class="links_name">Open Account</span>
+            <span class="links_name" style="color: <?php echo FONT_COLOR; ?>" >Open Account</span>
           </a>
         </li>
         <li>
           <a href="customer-send.php">
             <i class="bx bx-list-ul"></i>
-            <span class="links_name">Transfer</span>
+            <span class="links_name" 
+            style="color: <?php echo FONT_COLOR; ?>">Transfer</span>
           </a>
         </li>
         <li>
           <a href="customer-side.php">
             <i class="bx bx-pie-chart-alt-2"></i>
-            <span class="links_name">Transaction</span>
+            <span class="links_name"  style="color: <?php echo FONT_COLOR; ?>">Transaction</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-coin-stack"></i>
-            <span class="links_name">Pay</span>
+            <span class="links_name"  style="color: <?php echo FONT_COLOR; ?>">Pay</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-book-alt"></i>
-            <span class="links_name">Apply Loan</span>
+            <span class="links_name"  style="color: <?php echo FONT_COLOR; ?>">Apply Loan</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-gift"></i>
-            <span class="links_name">Points</span>
+            <span class="links_name"  style="color: <?php echo FONT_COLOR; ?>">Points</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-message"></i>
-            <span class="links_name">Interest</span>
+            <span class="links_name"  style="color: <?php echo FONT_COLOR; ?>">Interest</span>
           </a>
         </li>
         <!--<li>
@@ -148,22 +167,30 @@ if ($db->connect_error) {
         <li>
           <a href="acc-settingsProfile.php">
             <i class="bx bx-cog"></i>
-            <span class="links_name">Account Settings</span>
+            <span class="links_name"  style="color: <?php echo FONT_COLOR; ?>">Account Settings</span>
           </a>
         </li>
         
         
       </ul>
     </div>
-    <section class="home-section">
+    <section class="home-section" >
       <nav>
         <div class="sidebar-button">
           <i class="bx bx-menu sidebarBtn"></i>
-          <span class="dashboard">Home</span>
+          <span class="dashboard"  style="color: <?php echo FONT_COLOR; ?>" >Home</span>
         </div>
         <div class="searh-box">
           
-          <img src="img/luxura-nav.png" alt="">
+          <!--<img src="img/luxura-nav.png" alt="">-->
+          <?php
+    // Check if the logo image path is available
+    if (isset($logoImagePath) && !empty($logoImagePath)) {
+      echo '<img src="' . $logoImagePath . '" alt="Logo" id="logo" >';
+  } else {
+      echo '<p>No logo image found.</p>';
+  }
+  ?>
         </div>
 
         <!--<div class="search-box">
@@ -177,7 +204,7 @@ if ($db->connect_error) {
           <i class="bx bx-chevron-down"></i>
         
         </div> -->
-        <div class="profile-dropdown">
+        <div class="profile-dropdown" >
         <div onclick="toggle()" class="profile-dropdown-btn">
             <div class="profile-img">
             <img src="<?php echo htmlspecialchars($userImage); ?>" alt="Profile Image">
@@ -203,32 +230,38 @@ if ($db->connect_error) {
           </li>
 
           <li class="profile-dropdown-list-item">
-            <a href="acc-settingsProfile.php">
+            <a href="acc-settingsProfile.php"  style="color: <?php echo FONT_COLOR; ?>">
               <i class="fa-regular fa-user"></i>
               User Profile
             </a>
           </li>
           <li class="profile-dropdown-list-item">
-            <a href="acc-editProf.php">
+            <a href="#"  style="color: <?php echo FONT_COLOR; ?>">
+              <i class="fa-solid fa-bell"></i>
+              Notifications
+            </a>
+          </li>
+          <li class="profile-dropdown-list-item">
+            <a href="acc-editProf.php"  style="color: <?php echo FONT_COLOR; ?>">
             <i class="fa fa-pen fa-xs edit"></i>
               Update Profile
             </a>
           </li>
           
           <li class="profile-dropdown-list-item">
-            <a href="#">
+            <a href="#"  style="color: <?php echo FONT_COLOR; ?>">
               <i class="fa-solid fa-sliders"></i>
               Settings
             </a>
           </li>
           <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-lock"></i>
+            <a href="#" style="color: <?php echo FONT_COLOR; ?>">
+              <i class="fa-solid fa-lock"  ></i>
               Lock Account
             </a>
           </li>
           <li class="profile-dropdown-list-item">
-            <a href="logout-user.php">
+            <a href="logout-user.php"  style="color: <?php echo FONT_COLOR; ?>">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               Log out
             </a>
@@ -240,32 +273,79 @@ if ($db->connect_error) {
 
     
       </nav>
-      
-      <div class="custdashboard">
-        <!--<nav class="custnavbar">
-            <div class="logo">
-                <span>Bank</span>
-            </div>
-            <div class="nav-links">
-                <a href="#" class="active">HOME</a>
-                <a href="#">BANKING</a>
-                <a href="#">CREDIT CARD</a>
-                <a href="#">INVESTMENTS</a>
-                <a href="#">PERSONAL LOAN</a>
-                <a href="#">HOME LOAN</a>
-            </div>
-            <div class="nav-icons">
-                <button class="icon-btn"><img src="/placeholder.svg" alt="notifications"></button>
-                <button class="icon-btn"><img src="/placeholder.svg" alt="profile"></button>
-                <button class="icon-btn"><img src="/placeholder.svg" alt="settings"></button>
-            </div>
-        </nav>-->
+         
 
-        <main class="content">
+      <div class="offers-slideshow">
+    <h2  style="color: <?php echo FONT_COLOR; ?>">Exclusive Offers</h2>
+    <div class="slideshow-container">
+        <?php 
+        $slideCount = 1; // Counter for slides
+        foreach ($slides as $slide): 
+        ?>
+        <div class="mySlides">
+            <div class="numbertext"><?= $slideCount ?> / <?= $slides->num_rows ?></div>
+            <img src="<?= htmlspecialchars($slide['slide_image']) ?>" style="width:1200px">
+            <div class="offer-slide">
+                <!-- Add any additional content for the slide re -->
+            </div>
+        </div>
+        <?php 
+            $slideCount++; 
+        endforeach; 
+        ?>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div style="text-align:center">
+        <?php for ($i = 1; $i <= $slides->num_rows; $i++): ?>
+        <span class="dot" onclick="currentSlide(<?= $i ?>)"></span>
+        <?php endfor; ?>
+    </div>
+</div>
+
+<style>
+  .offers-slideshow{
+    margin-top: 50px;
+  }
+  .mySlides {
+    margin-top:
+     50px;
+  display: none;
+  margin-left: 50px;
+
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active1, .dot:hover {
+  background-color: #717171;
+}
+
+</style>
+      <div class="custdashboard">
+       
+        <main class="content" >
             <div class="top-section">
                 <div class="balance-card">
                     <div class="account-info">
-                        <p class="label"><?php echo htmlspecialchars($acctype); ?></p>
+                        <p class="label" ><?php echo htmlspecialchars($acctype); ?> </p>
                         <h3 class="holder-name"> <?php echo htmlspecialchars($userName . ' ' . $mname . ' ' . $lname); ?></h3>
                         <p class="account-number"><?php echo htmlspecialchars($acc_no); ?></p>
                         <button class="more-btn">More</button>
@@ -386,60 +466,9 @@ if ($db->connect_error) {
             }
 
             </style>
-             <!--<div class="offers-slideshow">
-                <h2>Exclusive Offers</h2>
-                <div class="slideshow-container">
-                    <div class="offer-slide active">
-                        <img src="img/offer1.png" alt="Offer 1">
-                        <p>Get 5% cashback on all debit card transactions!</p>
-                    </div>
-                    <div class="offer-slide">
-                        <img src="img/offer2.png" alt="Offer 2">
-                        <p>Earn double reward points on credit card spends above $500.</p>
-                    </div>
-                    <div class="offer-slide">
-                        <img src="offer3.jpg" alt="Offer 3">
-                        <p>Avail personal loans at 7.5% p.a. limited time offer!</p>
-                    </div>
-                </div>
-                <div class="slideshow-controls">
-                    <button class="prev-btn">❮</button>
-                    <button class="next-btn">❯</button>
-                </div>
-            </div>-->
+             
       
-              
-
-      <div class="offers-slideshow">
-        <?php 
-        $slideCount = 1; // Counter for slides
-        foreach ($slides as $slide): 
-        ?>
-         <h2>Exclusive Offers</h2>
-            <div class="slideshow-container">
-                <div class="numbertext"><?= $slideCount ?> / <?= $slides->num_rows ?></div>
-                <img src="<?= htmlspecialchars($slide['slide_image']) ?>" style="width:1200px">
-                    <div class="offer-slide">
-                    
-                  
-                </div>
-            </div>
-        <?php 
-            $slideCount++; 
-        endforeach; 
-        ?>
-        
-        <a class="prev-btn" onclick="plusSlides(-1)">❮</a>
-        <a class="next-btn" onclick="plusSlides(1)">❯</a>
-    </div>
-
-
-               <!-- Dots for each slide -->
-    <div style="text-align:center">
-        <?php for ($i = 1; $i <= $slides->num_rows; $i++): ?>
-            <span class="dot" onclick="currentSlide(<?= $i ?>)"></span> 
-        <?php endfor; ?>
-    </div>
+           
 
 
             <div class="bottom-section">
@@ -579,29 +608,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-                const slides = document.querySelectorAll('.offer-slide');
-                let currentSlide = 0;
+let slideIndex = 0;
+showSlides();
 
-                const showSlide = (index) => {
-                    slides.forEach((slide, i) => {
-                        slide.classList.toggle('active', i === index);
-                    });
-                };
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 5000); // Change slide every 5 seconds
+}
 
-                document.querySelector('.prev-btn').addEventListener('click', () => {
-                    currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
-                    showSlide(currentSlide);
-                });
-
-                document.querySelector('.next-btn').addEventListener('click', () => {
-                    currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
-                    showSlide(currentSlide);
-                });
-
-                showSlide(currentSlide);
-            });
-      
 
 
 

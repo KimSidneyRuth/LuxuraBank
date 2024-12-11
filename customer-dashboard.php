@@ -40,6 +40,14 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
 
 <style>
 
+<?php define('FONT_COLOR', '#ff0000'); ?>
+<style>
+  span, a  {
+    color: <?php echo FONT_COLOR; ?>;
+  }
+</style>
+
+
 </style>
 
 
@@ -65,10 +73,20 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
     <div class="sidebar">
       <div class="logo-details">
        
-        <span class="logo_name"><div id="kim" style="text-align: center; margin-bottom: 20px; margin-top:10px">
+        <!--<span class="logo_name"><div id="kim" style="text-align: center; margin-bottom: 20px; margin-top:10px">
                  <img src="img/luxura-nav.png" alt="" style="width: 170px;">
                         </div></span>
-      </div>
+      </div>-->
+      <span>
+      <?php
+    // Check if the logo image path is available
+    if (isset($logoImagePath) && !empty($logoImagePath)) {
+        echo '<img src="' . $logoImagePath . '" alt="Logo" id="logo" style="width: 250px; height: 70px; margin: 10px 0px 0px 20px"  >';
+    } else {
+        echo '<p>No logo image found.</p>';
+    }
+    ?>
+      </span>
       <ul class="nav-links">
         <li>
           <a href="customer-side.php" class = "active">
@@ -103,13 +121,13 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
         <li>
           <a href="#">
             <i class="bx bx-book-alt"></i>
-            <span class="links_name">Apply Loan</span>
+            <span class="links_name" >Apply Loan </span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-gift"></i>
-            <span class="links_name">Points</span>
+            <span class="links_name" style="color: <?php echo FONT_COLOR; ?>" >Points</span>
           </a>
         </li>
         <li>
@@ -142,8 +160,16 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
         </div>
         <div class="searh-box">
           
-          <img src="img/luxura-nav.png" alt="">
+          <!--<img src="img/luxura-nav.png" alt="">-->$_COOKIE <?php
+    // Check if the logo image path is available
+    if (isset($logoImagePath) && !empty($logoImagePath)) {
+      echo '<img src="' . $logoImagePath . '" alt="Logo" id="logo" style="width: 250px; height: 70px; margin: 10px 0px 0px 20px"  >';
+  } else {
+      echo '<p>No logo image found.</p>';
+  }
+  ?>
         </div>
+       
 
         <!--<div class="search-box">
           <input type="text" placeholder="Search..." />
