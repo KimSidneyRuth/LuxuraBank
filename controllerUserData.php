@@ -109,7 +109,7 @@ if (isset($_POST['Register'])) {
     $middleName = mysqli_real_escape_string($con, $_POST['middleName']);
     $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    $phoneNumber = mysqli_real_escape_string($con, $_POST['phone-number']);
+    $phoneNumber = mysqli_real_escape_string($con, $_POST['phoneNumber']);
     $accountType = mysqli_real_escape_string($con, $_POST['account-type']);
     $birthday = mysqli_real_escape_string($con, $_POST['birthday']);
     $sex = mysqli_real_escape_string($con, $_POST['sex']);
