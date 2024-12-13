@@ -301,7 +301,7 @@ if(isset($_POST['save'])){
    ?>
 
 
-<form action="admin-editProf.php" method = "POST" enctype="multipart/form-data">
+<form action="admin-walkin.php" method = "POST" enctype="multipart/form-data">
 
     <?php
          if($fetch['image'] == ''){
@@ -395,7 +395,12 @@ if (count($errors) > 0) {
             </div>
             <div class="form-group">
                 <label for="firstName">Valid ID Number*</label>
-                <input type="text" name="lname" placeholder="Enter valid id number">
+                <input type="text" name="idNum" placeholder="Enter valid id number">
+
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone Number*</label>
+                <input type="text" name="phone" placeholder="Enter phone number">
 
 </div>
             
