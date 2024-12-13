@@ -115,6 +115,9 @@ if (isset($_POST['Register'])) {
     $sex = mysqli_real_escape_string($con, $_POST['sex']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $confirmPassword = mysqli_real_escape_string($con, $_POST['confirm-password']);
+    $address = mysqli_real_escape_string($con, $_POST['address']);
+    $validID = mysqli_real_escape_string($con, $_POST['validID']);
+
 
     if ($password !== $confirmPassword) {
         $error = "Passwords do not match!";
@@ -128,14 +131,14 @@ if (isset($_POST['Register'])) {
             $status = "notverified";
           
            $acc_no = rand(9999999999, 111111111);
-            $insertQuery = "INSERT INTO user (userId, firstName, lastName,middleName, email, accountType, account_no, phoneNumber, birthday, sex, password, verification_status) 
-                            VALUES ('$userId', '$firstName', '$lastName', '$middleName', '$email', '$accountType', '$acc_no','$phoneNumber', '$birthday', '$sex', '$password', '$status')";
+            $insertQuery = "INSERT INTO user (userId, firstName, lastName,middleName, email, accountType, account_no, phoneNumber, birthday, sex, password, verification_status, Address, validID) 
+                            VALUES ('$userId', '$firstName', '$lastName', '$middleName', '$email', '$accountType', '$acc_no','$phoneNumber', '$birthday', '$sex', '$password', '$status', '$address', '$validID')";
 
             $data_check = mysqli_query($con, $insertQuery);
             if ($data_check) {
                 $subject = "Sucessfully Registered!";
-                $message = "Dear, $firstName, you are now registerd in Luxura Bank. Your user id is <b>$userId</b>.  To access all features, verify your account.";
-                $message2 = "Dear, $firstName, your account number is  <b>$acc_no</b> . Keep your information secured. To access all features, verify your account.";
+                $message = "Dear, $firstName, you are now registered in Luxura Bank. Your user id is <b>$userId</b>. Your account number for your $accountType is  <b>$acc_no</b>  . Keep your information secured.  To access all features, verify your account. Enjoy seamless bank transactions with LUXURA!" ;
+               
                 if(sendMail($email, $subject, $message, $message2)){
                     
                     $info = "We've sent your account number to your email - $email.";

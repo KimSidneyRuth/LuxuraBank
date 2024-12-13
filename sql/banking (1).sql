@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2024 at 02:47 PM
+-- Generation Time: Dec 13, 2024 at 04:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -198,6 +198,7 @@ CREATE TABLE `user` (
   `Address` varchar(100) NOT NULL,
   `accountType` varchar(50) NOT NULL,
   `account_no` int(11) NOT NULL,
+  `Balance` int(11) DEFAULT 0,
   `phoneNumber` varchar(15) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `sex` varchar(6) NOT NULL,
@@ -205,8 +206,8 @@ CREATE TABLE `user` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `verification_status` varchar(20) DEFAULT 'notverified',
   `verified` int(11) DEFAULT 0,
-  `code` mediumint(9) NOT NULL,
-  `password_code` int(11) NOT NULL,
+  `code` mediumint(9) DEFAULT NULL,
+  `password_code` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `role` varchar(20) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -215,12 +216,15 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userId`, `firstName`, `middleName`, `lastName`, `email`, `ValidID`, `Address`, `accountType`, `account_no`, `phoneNumber`, `birthday`, `sex`, `password`, `created_at`, `verification_status`, `verified`, `code`, `password_code`, `image`, `role`) VALUES
-('077142', 'Adrielle', 'Bayot', 'Gallagher', 'kimpachiiiii@gmail.com', '', '', 'Fixed-Deposit-Account', 2147483647, '9558876693', '2004-01-16', 'Female', '123', '2024-11-23 08:00:15', 'verified', 0, 0, 615757, 'kim.jpg', 'user'),
-('161195', 'Nolee Kia', 'Bayot', 'Castillon', 'castillonkia@gmail.com', '', '', 'Savings-Account', 2147483647, '9056707990', '2002-10-02', 'Female', 'kiakia02', '2024-12-11 09:21:35', 'notverified', 0, 0, 170620, 'Screenshot 2024-12-11 173108.png', 'user'),
-('284531', 'sidney', '', 'PASCUAL', 'kimsidneyruth11@gmail.com', '', '', '', 0, '9558876693', '0000-00-00', 'Female', 'walalang', '2024-11-16 06:38:25', 'notverified', 0, 281717, 0, NULL, 'user'),
-('571631', 'Nolee Kia', 'Bayot', 'Castillon', 'kimvasquez016@gmail.com', '', '', 'Savings-Account', 2147483647, '', '0000-00-00', 'Male', 'kiakiakia', '2024-12-13 13:21:52', 'notverified', 0, 0, 0, NULL, 'user'),
-('784833', 'Kit Eriana Arvee', 'Bayot', 'Pascual', 'kiterianaarveepascual@gmail.com', '', '', '', 0, '9764379856', '2006-09-29', 'Female', '$2y$10$Z8A9Jab.otkN6KiP.uMoSuoqKr.lPzl4dBfQiELf4mBCy.Aq36XT6', '2024-11-18 04:42:52', 'verified', 0, 172506, 0, 'Screenshot 2024-05-10 105921.png', 'user');
+INSERT INTO `user` (`userId`, `firstName`, `middleName`, `lastName`, `email`, `ValidID`, `Address`, `accountType`, `account_no`, `Balance`, `phoneNumber`, `birthday`, `sex`, `password`, `created_at`, `verification_status`, `verified`, `code`, `password_code`, `image`, `role`) VALUES
+('077142', 'Adrielle', 'Bayot', 'Gallagher', 'kimpachiiiii@gmail.com', '', '', 'Fixed-Deposit-Account', 2147483647, 0, '9558876693', '2004-01-16', 'Female', '123', '2024-11-23 08:00:15', 'verified', 0, 0, 615757, 'kim.jpg', 'user'),
+('129674', 'Princess Sarah', 'Mabangis', 'Del Mundo', 'jandellariadna@gmail.com', '8465876', 'manila', 'Credit Account', 2147483647, 0, '0438735373', '1990-09-08', 'Male', 'alyalyaly', '2024-12-13 14:49:58', 'notverified', 0, NULL, NULL, NULL, 'user'),
+('161195', 'Nolee Kia', 'Bayot', 'Castillon', 'castillonkia@gmail.com', '', '', 'Savings-Account', 2147483647, 0, '9056707990', '2002-10-02', 'Female', 'kiakia02', '2024-12-11 09:21:35', 'notverified', 0, 0, 170620, 'Screenshot 2024-12-11 173108.png', 'user'),
+('204312', 'Sarah Marie', 'Patatas', 'deliMundo', 'delmundoalysha@gmail.com', '0328948674', 'Malolos', 'Fixed-Deposit-Account', 2147483647, 0, '', '2024-12-24', 'Female', 'alyyyyy90', '2024-12-13 14:54:12', 'notverified', 0, NULL, NULL, NULL, 'user'),
+('284531', 'sidney', '', 'PASCUAL', 'kimsidneyruth11@gmail.com', '', '', '', 0, 0, '9558876693', '0000-00-00', 'Female', 'walalang', '2024-11-16 06:38:25', 'notverified', 0, 281717, 0, NULL, 'user'),
+('571631', 'Nolee Kia', 'Bayot', 'Castillon', 'kimvasquez016@gmail.com', '', '', 'Savings-Account', 2147483647, 0, '', '0000-00-00', 'Male', 'kiakiakia', '2024-12-13 13:21:52', 'notverified', 0, 0, 0, NULL, 'user'),
+('784833', 'Kit Eriana Arvee', 'Bayot', 'Pascual', 'kiterianaarveepascual@gmail.com', '', '', '', 0, 0, '9764379856', '2006-09-29', 'Female', '$2y$10$Z8A9Jab.otkN6KiP.uMoSuoqKr.lPzl4dBfQiELf4mBCy.Aq36XT6', '2024-11-18 04:42:52', 'verified', 0, 172506, 0, 'Screenshot 2024-05-10 105921.png', 'user'),
+('862112', 'Sarah', 'Martin', 'Del Mundo', 'littlesidneyyy@gmail.com', '', '', 'CreditCard', 2147483647, 0, '0438735373', '2024-12-02', 'Female', 'alyaly123', '2024-12-13 14:39:34', 'notverified', 0, NULL, NULL, NULL, 'user');
 
 -- --------------------------------------------------------
 

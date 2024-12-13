@@ -73,13 +73,13 @@
         <div class="inputfield">
           <label for="">Valid ID Number*</label>
           <input type="text" class="input" name="validID"
-            placeholder="KimPee@gmail.com"
+            placeholder="Valid ID Number"
             title="(Please enter your valid id number)">
         </div>
 
 
         <div class="inputfield">
-          <label for="">Mobile Number *</label>
+          <label for="">Phone Number *</label>
           <div class="custom-select" id="phone-codes">
             <select id="phone-code">
               <option value="+63">+63</option>

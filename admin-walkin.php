@@ -352,6 +352,10 @@ if (count($errors) > 0) {
 }
 ?>
         <div class="form-grid">
+                    <label for="userId">User ID *</label>
+                    <input type="text" id="userId" name="userId" class="input" value="<?php echo $generatedUserId; ?>" readonly>
+                </div>
+        <div class="form-grid">
             <div class="form-group">
                 <label for="firstName">First Name*</label>
                 <input type="text" name="firstName" placeholder="Enter first name.">
@@ -365,7 +369,7 @@ if (count($errors) > 0) {
             </div>
             <div class="form-group">
                 <label for="firstName">Middle Name*</label>
-                <input type="text" name="mname" placeholder="Enter middle name">
+                <input type="text" name="middleName" placeholder="Enter middle name">
 
             </div>
             <div class="form-group">
@@ -374,17 +378,17 @@ if (count($errors) > 0) {
             </div>
             <div class="form-group">
                 <label for="firstName">Last Name*</label>
-                <input type="text" name="lname" placeholder="Enter last name">
+                <input type="text" name="lastName" placeholder="Enter last name">
 
             </div>
             <div class="form-group">
                 <label for="firstName">Valid ID Number*</label>
-                <input type="text" name="idNum" placeholder="Enter valid id number">
+                <input type="text" name="validID" placeholder="Enter valid id number">
 
             </div>
             <div class="form-group">
                 <label for="Phone">Phone Number*</label>
-                <input type="text" name="phone" placeholder="Enter phone number">
+                <input type="text" name="phoneNumber" placeholder="Enter phone number">
 
 </div>
             
@@ -401,6 +405,8 @@ if (count($errors) > 0) {
               <option value="CreditCard">Credit Card</option>
             </select>
           </div>
+
+
          
             
 
@@ -430,10 +436,8 @@ if (count($errors) > 0) {
 
             <div style="">
             <label>Address *</label>
-                <input type="password" class="input" id="password" name="password" placeholder="Create your password min 8 characters"
-                    autocomplete="off"
-                    title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
-                    maxlength="100" minlength="8" required>
+                <input type="text" class="input" id="address" name="address" placeholder="Address"
+                    autocomplete="off">
 
             </div>
           
