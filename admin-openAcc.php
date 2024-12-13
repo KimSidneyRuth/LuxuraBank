@@ -112,7 +112,7 @@ if (isset($_POST['create_acc_type'])) {
       </div>
       <ul class="nav-links">
         <li>
-          <a href="customer-side.php">
+          <a href="admin-dash.php">
             <i class="bx bx-grid-alt"></i>
             <span class="links_name">Dashboard</span>
           </a>
@@ -132,41 +132,41 @@ if (isset($_POST['create_acc_type'])) {
         <li>
           <a href="#">
             <i class="bx bx-pie-chart-alt-2"></i>
-            <span class="links_name">Transaction</span>
+            <span class="links_name">Pointing System</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-coin-stack"></i>
-            <span class="links_name">Transfer</span>
+            <span class="links_name">Offers</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="admin-customerPage">
             <i class="bx bx-book-alt"></i>
-            <span class="links_name">Pay Bills</span>
+            <span class="links_name">Announcements</span>
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="bx bx-gift"></i>
-            <span class="links_name">Points</span>
+            <i class="bx bx-user"></i>
+            <span class="links_name">Reports</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="bx bx-message"></i>
-            <span class="links_name">Interest</span>
+            <span class="links_name">Payment History</span>
           </a>
         </li>
-        <!--<li>
-          <a href="#">
-            <i class="bx bx-heart"></i>
-            <span class="links_name">Favrorites</span>
-          </a>
-        </li>-->
         <li>
-          <a href="acc-settings.php" >
+          <a href="admin-customerPageEdit.php">
+            <i class="bx bx-heart"></i>
+            <span class="links_name">Customer Page</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
             <i class="bx bx-cog"></i>
             <span class="links_name">Account Settings</span>
           </a>
@@ -280,163 +280,157 @@ if (isset($_POST['create_acc_type'])) {
     <div class="sidenav">
         <div class="sidenav-url">
             <!--<div class="url">
-                <h2><a href="" class="active">Add Acc Type</a></h2>
+                <h2><a href="">Add Acc Type</a></h2>
                 <hr align="center">
             </div>
             <div class="url">
                 <h2><a href="#settings">Manage Acc Type</a></h2>
                 <hr align="center">
             </div>-->
-            <div class="url">
-                <h2><a href="admin-openAcc.php">Open Account</a></h2>
-                <hr align="center">
-            </div>
-            <div class="url">
-                <h2><a href="">Manage Acc Openings</a></h2>
-                <hr align="center">
-            </div>
+          
         </div>
     </div>
-
     <style>
-      .form-container {
+        .ulo {
             max-width: 1200px;
-            margin: 0 auto;
-            border: 1px solid #e2e2e2;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 70px;
-        }
-
-        .form-header {
-            background-color: #d4bee4;
-            color: white;
-            padding: 15px 20px;
-            font-size: 20px;
-        }
-
-        .form-content {
+            margin: 20px auto;
             padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-top: 70px
+            
         }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+        /* Header section styling */
+        .head {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6a1b9a;
             margin-bottom: 20px;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
+        /* Search bar styling */
+        .search {
+            margin-bottom: 15px;
         }
 
-        .form-label {
-            color: #333;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .form-input.readonly {
-            background-color: #f5f5f5;
-        }
-
-        .editor-container {
-            margin-top: 20px;
-        }
-
-        .editor-toolbar {
-            border: 1px solid #ddd;
-            border-bottom: none;
-            border-radius: 4px 4px 0 0;
+        .search input {
             padding: 8px;
-            background-color: #f5f5f5;
-        }
-
-        .editor-button {
-            padding: 4px 8px;
-            background: none;
-            border: none;
-            margin-right: 4px;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .editor-button:hover {
-            background-color: #e0e0e0;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
             border-radius: 4px;
         }
 
-        .editor-content {
-            border: 1px solid #ddd;
-            border-radius: 0 0 4px 4px;
-            min-height: 200px;
-            padding: 12px;
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
 
-        .submit-button {
-            background-color: #d4bee4;
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Header row style */
+        table th {
+            background-color: #6a1b9a;
+            color: white;
+        }
+
+        /* Alternating row colors */
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Button styling */
+        .btn {
+            padding: 8px 12px;
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 12px 24px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
         }
 
-        .submit-button:hover {
-            background-color: #7e57c2;
+        .btn:hover {
+            background-color: #218838;
         }
     </style>
-    <form action="admin-acc.php" METHOD= "POST">
-    <div class="form-container">
-        <div class="form-header">
-            Please Fill All the Fields
-        </div>
-        <div class="form-content">
-            <form>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Account Category Name</label>
-                        <input type="text" class="form-input" name = "name">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Account Category Rates % Per Year</label>
-                        <input type="text" class="form-input" name = "rate" >
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Account Category Code</label>
-                        <input type="text" class="form-input readonly" readonly name ="code" >
-                    </div>
-                </div>
 
-                <div class="editor-container">
-                    <label class="form-label">Account Category Description</label>
-                    <div class="editor-toolbar">
-                        <button type="button" class="editor-button">B</button>
-                        <button type="button" class="editor-button"><i>I</i></button>
-                        <button type="button" class="editor-button">•</button>
-                        <button type="button" class="editor-button">1.</button>
-                        <button type="button" class="editor-button">⇤</button>
-                        <button type="button" class="editor-button">⇥</button>
-                        <button type="button" class="editor-button">🔗</button>
-                        <button type="button" class="editor-button">↺</button>
-                        <button type="button" class="editor-button">?</button>
-                    </div>
-                    <div class="editor-content" contenteditable="true" name ="description"></div>
-                </div>
+   
+    <form action="admin-openAcc.php" METHOD= "POST">
+    
+    <!--apply the picture in this section-->
 
-                <button type="submit" class="submit-button" name = "create_acc_type">Add Account Type</button>
-            </form>
+    <div class="ulo">
+        <!-- Header section to display title -->
+        <div class="head">Select any action options to manage your clients.</div>
+
+        <!-- Search bar to filter table entries -->
+        <div class="search">
+            <label for="search">Search:</label>
+            <input type="text" id="search" placeholder="Enter search term...">
         </div>
+
+        <!-- Table to display client details -->
+        <table>
+            <thead>
+                <tr> 
+                    <th>#</th>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Account Type</th>
+                
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id = "results">
+            <?php
+                                            //Fetching all the clients to the table.
+                                            include "connection.php";
+
+                                          
+                                        
+                                            $ret = "SELECT * FROM  user ORDER BY RAND() ";
+                                            $stmt = $con->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            $cnt = 1;
+
+                                            while ($row = $res->fetch_object()) {
+
+
+                                            ?>
+                                            <tr>
+                                            <th scope="row" class="align-middle"><?php echo $cnt; ?></th>
+                                            <td class="align-middle"><?php echo $row->userId; ?></td>
+                                                    <td><?php   echo $row->firstName 
+        . (isset($row->middleName) && !empty($row->middleName) ? ' ' . $row->middleName : '') 
+        . (isset($row->lastName) && !empty($row->lastName) ? ' ' . $row->lastName : ''); ?></td>
+                                                    <td><?php echo $row->accountType; ?></td>
+                                                    <td><?php echo $row->phoneNumber; ?></td>
+                                                    <td><?php echo $row->email; ?></td>
+                                                    <td><?php echo $row->Address; ?></td>
+                                                    
+                                                    <td>
+                                                    <button class="btn">Open Account</button>
+                                                    </td>
+
+</tr>
+
+<?php $cnt = $cnt + 1;
+} ?>
+               
+            </tbody>
+        </table>
     </div>
 
     

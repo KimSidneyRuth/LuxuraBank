@@ -77,10 +77,14 @@ $id = $_SESSION['id'];
           </a>
         </li>
         <li>
-          <a href="admin-acc.php">
+          <a href="admin-openAcc.php">
             <i class="bx bx-user"></i>
-            <span class="links_name">Accounts</span>
+            <span class="links_name">Clients</span>
+           
+       
+    
           </a>
+
         </li>
         <li>
           <a href="#">

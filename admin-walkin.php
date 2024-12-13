@@ -409,6 +409,7 @@ if (count($errors) > 0) {
               <option value="Savings-Account">Savings Account</option>
               <option value="Credit Account">Salary Account</option>
               <option value="Fixed-Deposit-Account">Fixed Deposit Account</option>
+              <option value="CreditCard">Credit Card</option>
             </select>
           </div>
           <div class="form-group">
