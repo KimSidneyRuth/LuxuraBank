@@ -1,13 +1,10 @@
-<?php 
-
-include "connection.php";
-session_start();
+<?php require_once 'controllerUserData.php';
 
 
 
 
-if (!isset($_SESSION['id'])) {
-
+if (!isset($_SESSION['name'])) {
+    // Redirect to login page if the user is not logged in
  
     header('location: login-user.php');
     exit();
@@ -46,31 +43,39 @@ $role = $_SESSION['role'];
 $email = $_SESSION['email'];
 
 
-
-
-if (isset($_POST['create_acc_type'])) {
-
-    //Register  account type
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $rate = $_POST['rate'];
-    $code = $_POST['code'];
-
-    //Insert Captured information to a database table
-    $query = "INSERT INTO acc_types (name, description, rate, code) VALUES (?,?,?,?)";
-    $stmt = $mysqli->prepare($query);
-    //bind paramaters
-    $rc = $stmt->bind_param('ssss', $name, $description, $rate, $code);
-    $stmt->execute();
-
-    //declare a varible which will be passed to alert function
-    if ($stmt) {
-        alert("success", "Account Category Created!");
+if (isset($_POST['send_code'])) {
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    
+    // Check if email matches session email
+    if ($_SESSION['email'] !== $email) {
+        $errors['email'] = "This email does not match the one used for password reset!";
     } else {
-        alert("error", "Please Try Again!");
+        $check_email = "SELECT * FROM admin WHERE email='$email'";
+        $run_sql = mysqli_query($con, $check_email);
+        if (mysqli_num_rows($run_sql) > 0) {
+            $code = rand(999999, 111111); // Generate a random verification code
+            $insert_code = "UPDATE admin SET code = $code WHERE email = '$email'";
+            $run_query = mysqli_query($con, $insert_code);
+            
+            if ($run_query) {
+                $subject = "Password Reset Code";
+                $message = "Dear, $name , your password reset code is <b>$code</b>. Thank You";
+                if (sendMail($email, $subject, $message)) {
+                    $_SESSION['info'] = "We've sent a password reset OTP to your email - $email";
+                    $_SESSION['email'] = $email;
+                    header("Location: changePass.php"); // Redirect to changePass.php
+                    exit(); // Stop further execution after redirection
+                } else {
+                    $errors['otp-error'] = "Failed while sending code!";
+                }
+            } else {
+                $errors['db-error'] = "Something went wrong!";
+            }
+        } else {
+            $errors['email'] = "This email address does not exist!";
+        }
     }
 }
-
 
 
  
@@ -280,162 +285,17 @@ if (isset($_POST['create_acc_type'])) {
     <div class="sidenav">
         <div class="sidenav-url">
             <div class="url">
-                <h2><a href="" class="active">Add Acc Type</a></h2>
+                <h2><a href="" class="active">Add Client</a></h2>
                 <hr align="center">
             </div>
             <div class="url">
-                <h2><a href="#settings">Manage Acc Type</a></h2>
+                <h2><a href="#settings">Manage Client</a></h2>
                 <hr align="center">
             </div>
             <div class="url">
-                <h2><a href="acc-pass.php">Open Account</a></h2>
+                <h2><a href="acc-pass.php">Archived</a></h2>
                 <hr align="center">
             </div>
-            <div class="url">
-                <h2><a href="">Manage Acc Openings</a></h2>
-                <hr align="center">
-            </div>
-        </div>
-    </div>
-
-    <style>
-      .form-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            border: 1px solid #e2e2e2;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 70px;
-        }
-
-        .form-header {
-            background-color: #d4bee4;
-            color: white;
-            padding: 15px 20px;
-            font-size: 20px;
-        }
-
-        .form-content {
-            padding: 20px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-label {
-            color: #333;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .form-input.readonly {
-            background-color: #f5f5f5;
-        }
-
-        .editor-container {
-            margin-top: 20px;
-        }
-
-        .editor-toolbar {
-            border: 1px solid #ddd;
-            border-bottom: none;
-            border-radius: 4px 4px 0 0;
-            padding: 8px;
-            background-color: #f5f5f5;
-        }
-
-        .editor-button {
-            padding: 4px 8px;
-            background: none;
-            border: none;
-            margin-right: 4px;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .editor-button:hover {
-            background-color: #e0e0e0;
-            border-radius: 4px;
-        }
-
-        .editor-content {
-            border: 1px solid #ddd;
-            border-radius: 0 0 4px 4px;
-            min-height: 200px;
-            padding: 12px;
-        }
-
-        .submit-button {
-            background-color: #d4bee4;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        .submit-button:hover {
-            background-color: #7e57c2;
-        }
-    </style>
-    <form action="admin-acc.php" METHOD= "POST">
-    <div class="form-container">
-        <div class="form-header">
-            Please Fill All the Fields
-        </div>
-        <div class="form-content">
-            <form>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Account Category Name</label>
-                        <input type="text" class="form-input" name = "name">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Account Category Rates % Per Year</label>
-                        <input type="text" class="form-input" name = "rate" >
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Account Category Code</label>
-                        <input type="text" class="form-input readonly" readonly name ="code" >
-                    </div>
-                </div>
-
-                <div class="editor-container">
-                    <label class="form-label">Account Category Description</label>
-                    <div class="editor-toolbar">
-                        <button type="button" class="editor-button">B</button>
-                        <button type="button" class="editor-button"><i>I</i></button>
-                        <button type="button" class="editor-button">•</button>
-                        <button type="button" class="editor-button">1.</button>
-                        <button type="button" class="editor-button">⇤</button>
-                        <button type="button" class="editor-button">⇥</button>
-                        <button type="button" class="editor-button">🔗</button>
-                        <button type="button" class="editor-button">↺</button>
-                        <button type="button" class="editor-button">?</button>
-                    </div>
-                    <div class="editor-content" contenteditable="true" name ="description"></div>
-                </div>
-
-                <button type="submit" class="submit-button" name = "create_acc_type">Add Account Type</button>
-            </form>
         </div>
     </div>
 

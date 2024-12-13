@@ -77,7 +77,7 @@ $id = $_SESSION['id'];
           </a>
         </li>
         <li>
-          <a href="admin-customerstable.php">
+          <a href="admin-acc.php">
             <i class="bx bx-user"></i>
             <span class="links_name">Accounts</span>
           </a>

@@ -2,7 +2,22 @@
 
 
 include "connection.php";
-session_start();
+include 'isadminlogin.php'; 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check which form was submitted and include the corresponding update script
+    if (isset($_POST["update_logo"])) {
+        include 'update_logo.php';
+    } elseif (isset($_POST["update_slideshow"])) {
+        include 'update_slideshow.php';
+    } elseif (isset($_POST["update_captions"])) {
+        include 'update_captions.php';
+    } elseif (isset($_POST["update_background"])) {
+        include 'update_bg.php';
+    } elseif (isset($_POST["update_color"])) {
+        include 'update_color.php';
+    }
+}
+
 
 
 if (!isset($_SESSION['name'])) {
@@ -100,8 +115,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
+  <script>
+function validatePassword(form) {
+    var password = prompt("Please enter the admin password:");
+
+    // Check if the password is correct
+    if (password !== null) {
+        // Add an input field to the form to store the entered password
+        var passwordInput = document.createElement("input");
+        passwordInput.type = "hidden";
+        passwordInput.name = "password";
+        passwordInput.value = password;
+        form.appendChild(passwordInput);
+
+        // Submit the form
+        form.submit();
+    } else {
+        // Display an error message
+        alert("Incorrect admin password. Form submission aborted.");
+    }
+}
+
+</script>
   <body>
-    <form action="admin-dash.php" method = "POST"></form>
+    <form action="admin-customerPageEdit.php" method = "POST"></form>
     <div class="sidebar">
       <div class="logo-details">
        
@@ -111,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
       <ul class="nav-links">
         <li>
-          <a href="#" class="active">
+          <a href="admin-dash.php" >
             <i class="bx bx-grid-alt"></i>
             <span class="links_name">Dashboard</span>
           </a>
@@ -159,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="admin-customerPageEdit.php" class="active">
             <i class="bx bx-heart"></i>
             <span class="links_name">Customer Page</span>
           </a>
@@ -213,6 +250,83 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
                 border 0.3s;
             }
+            h2 {
+    color: black;
+    text-align: center;
+    font-size: 60px;
+}
+
+.bg-updater,
+.color-updater,
+.logo-updater,
+.slideshow-updater {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: black;
+    font-size: 30px;
+}
+
+input[type="file"],
+input[type="color"] {
+    width: 40%;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 30px;
+}
+
+input[type="submit"] {
+    background-color: #d4bee4;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 30px;
+  
+
+}
+
+input[type="submit"]:hover {
+    background-color: #F3B75B;
+}
+
+.checkbox-label {
+    display: inline-block;
+    margin-right: 10px;
+    color: #555;
+    padding: 10px;
+}
+.sidebar{
+  position: fixed;
+  top: 0;
+}
+
+.checkbox-label input {
+    margin-right: 35px;
+    font-size: 40px;
+    transform: scale(1.5);
+}
+
+#arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: black;
+        }
         </style>
 
         <ul class="profile-dropdown-list">
@@ -251,57 +365,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   
 </table>
 <div class="container">
-        <!--<div class="section">
-            <h2>Logo</h2>
-            <p>Choose a logo for the extension</p>
-            <div class="options">
-                <button class="option">Light</button>
-                <button class="option">Dark</button>
-                <button class="option">System</button>
-            </div>
-        </div>
-        <div class="section">
-            <h2>Font</h2>
-            <p>Choose a preferred theme for the extension</p>
-            <div class="options">
-                <button class="option">Sans Serif</button>
-                <button class="option">Slab</button>
-                <button class="option">Mono</button>
-                <button class="option">Rounded</button>
-            </div>
-            <div class="color-options">
-                <div class="color-circle" style="background-color: #c0a9f0;"></div>
-                <div class="color-circle" style="background-color: #b0d4f0;"></div>
-                <div class="color-circle" style="background-color: #a9f0c0;"></div>
-                <div class="color-circle" style="background-color: #f0c0a9;"></div>
-                <div class="color-circle" style="background-color: #f0a9d4;"></div>
-            </div>
-        </div>
-        <div class="section">
-            <h2>Weather</h2>
-            <p>Choose a unit of measurement that is comfortable for you</p>
-            <div class="options">
-                <button class="option">°C</button>
-                <button class="option">°F</button>
-            </div>
-        </div>
-        <div class="section">
-            <h2>Background Color</h2>
-            <p>Choose a preferred background color</p>
-            <div class="color-options">
-                <div class="color-circle" style="background-color: #c0a9f0;"></div>
-                <div class="color-circle" style="background-color: #b0d4f0;"></div>
-                <div class="color-circle" style="background-color: #a9f0c0;"></div>
-                <div class="color-circle" style="background-color: #f0c0a9;"></div>
-                <div class="color-circle" style="background-color: #f0a9d4;"></div>
-            </div>
-        </div>
-      
-        <div class="section">
-    <h2>Slideshow</h2>
-    <p>Manage your slideshow images</p>
-    
-    <!-- Display slides in a table -->
+<div class="bg-updater">
+
+<!-- Form for changing website background -->
+<form action="update_bg.php" method="post" enctype="multipart/form-data">
+    <label for="background">Upload Background Image:</label>
+    <input type="file" name="background_image" accept="image/*"><br>
+
+    <input type="submit" value="Update Background" onclick="validatePassword(this.form)">
+</form>
+<!-- Form for removing website background -->
+<form action="remove_background.php" method="post">
+    <input type="submit" value="Remove Background" onclick="validatePassword(this.form)">
+</form>
+
+</div>
+<div class="color-updater">
+    <!-- Form for changing website color background and font color -->
+    <form action="update_color.php" method="post">
+        <label for="background_color">Website Background Color:</label>
+        <input type="color" name="background_color"><br>
+
+        <label for="font_color">Website Font Color:</label>
+        <input type="color" name="font_color"><br>
+
+        <input type="submit" value="Update Color" onclick="validatePassword(this.form)">
+    </form>
+</div>
+
+<div class="logo-updater">
+<!-- Form for changing the logo -->
+<form action="admin-customerPageEdit.php" method="post" enctype="multipart/form-data">
+    <label for="logo">New Logo:</label>
+    <input type="file" name="logo" accept="image/*"><br>
+    <input type="submit" name="update_logo" value="Update Logo" onclick="validatePassword(this.form)">
+</form>
+</div>
+
+
     <table class="slideshow-table">
         <thead>
             <tr>
@@ -320,7 +421,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <td><?php echo $row['slide_order']; ?></td>
                     <td><img src="<?php echo $row['slide_image']; ?>" alt="Slide Image" class="slideshow-image"></td>
                     <td>
-                        <a href="admin-customerPageEdit.php?edit=<?php echo $row['slide_id']; ?>" class="action-link edit">Edit</a>
+                        <a href="admin-customerPageEdit.php?edit=<?php echo $row['slide_id']; ?>" class="action-link edit" onclick="validatePassword(this.form)">Edit</a>
                         <a href="admin-customerPageEdit.php?delete=<?php echo $row['slide_id']; ?>" onclick="return confirm('Are you sure you want to delete this slide?')" class="action-link delete">Delete</a>
                     </td>
                 </tr>

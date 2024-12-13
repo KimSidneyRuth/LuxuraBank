@@ -340,10 +340,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
                     <label for="recipientAccount">Account Number:</label>
                     <input type="text" id="recipientAccount" name="recipientAccount" required>
                 </div>
-                <div class="trans-form-group">
-                    <label for="bankName">Bank Name:</label>
-                    <input type="text" id="bankName" name="bankName" required>
-                </div>
+                
             </div>
 
             <div class="trans-section">
