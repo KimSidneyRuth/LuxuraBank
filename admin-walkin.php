@@ -276,23 +276,7 @@ if(isset($_POST['save'])){
 
 <div class="container">
     <!-- Sidenav -->
-    <div class="sidenav">
-        <div class="sidenav-url">
-            <div class="url">
-                <h2><a href="#">Loan/Credit</a></h2>
-                <hr align="center">
-            </div>
-            <div class="url">
-                <h2><a href="#settings"class="active">Open Account</a></h2>
-                <hr align="center">
-            </div>
-            <div class="url">
-                <h2><a href="#settings">Deposit</a></h2>
-                <hr align="center">
-            </div>
-            
-        </div>
-    </div>
+    
      <?php
       $select = mysqli_query($con, "SELECT * FROM `admin` WHERE id = '$id'") or die('query failed');
       if(mysqli_num_rows($select) > 0){
@@ -316,24 +300,24 @@ if(isset($_POST['save'])){
          }
       ?>
 
-<div class="edit-profile-container">
+<div class="edit-profile-container" style="width:100vw">
     <!-- Left Section: Profile Photo -->
-    <div class="profile-photo">
-        <img src="<?php echo htmlspecialchars($userImage); ?> "alt="Profile Photo">
-        <label for="upload-photo">Upload a photo...</label>
-        <input type="file" id="upload-photo" name ="upload_photo">
-        <button class="btn save" name = "upload">Upload</button>
-        <div class="user-info">
-            <div class="info-item">
-                <span class="label">User ID:</span>
-                <span class="value" id="userId"><?php echo $generatedUserId; ?></span>
-
+    <div class="sidenav">
+        <div class="sidenav-url">
+            <div class="url">
+                <h2><a href="#">Loan/Credit</a></h2>
+                <hr align="center">
             </div>
-        
+            <div class="url">
+                <h2><a href="#settings"class="active">Open Account</a></h2>
+                <hr align="center">
+            </div>
+            <div class="url">
+                <h2><a href="#settings">Deposit</a></h2>
+                <hr align="center">
+            </div>
+            
         </div>
-
-
-
     </div>
  
 
@@ -370,7 +354,7 @@ if (count($errors) > 0) {
         <div class="form-grid">
             <div class="form-group">
                 <label for="firstName">First Name*</label>
-                <input type="text" name="fname" placeholder="Enter first name.">
+                <input type="text" name="firstName" placeholder="Enter first name.">
 
             </div>
           
@@ -417,13 +401,7 @@ if (count($errors) > 0) {
               <option value="CreditCard">Credit Card</option>
             </select>
           </div>
-          <div class="form-group">
-                <label>Confirm Password *</label>
-            <input type="password"  class="input" id="confirm-password" name="confirm-password"
-                placeholder="Confirm password" autocomplete="off"
-                title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
-                maxlength="100" minlength="8" required>
-            </div>
+         
             
 
           <div class="form-group">
@@ -442,6 +420,24 @@ if (count($errors) > 0) {
                     maxlength="100" minlength="8" required>
 
             </div>
+            <div class="form-group">
+                <label>Confirm Password *</label>
+            <input type="password"  class="input" id="confirm-password" name="confirm-password"
+                placeholder="Confirm password" autocomplete="off"
+                title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
+                maxlength="100" minlength="8" required>
+            </div>
+
+            <div style="">
+            <label>Address *</label>
+                <input type="password" class="input" id="password" name="password" placeholder="Create your password min 8 characters"
+                    autocomplete="off"
+                    title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
+                    maxlength="100" minlength="8" required>
+
+            </div>
+          
+            
            
             
             
