@@ -84,6 +84,11 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .sidebar{
+        margin-top: 0;
+      }
+    </style>
   </head>
   <body>
     <form action="admin-accSettings.php" method = "POST"></form>
@@ -228,6 +233,13 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
             transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
                 border 0.3s;
             }
+            #arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: black;
+        }
         </style>
 
 
@@ -257,7 +269,12 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
          }
       ?>
 
-
+<a href="admin_news.php" id="arrow"> <!-- Arrow Link to Homepage -->
+        <svg width="54" height="74" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 12H4" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 18L4 12L10 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
 <div class="flex-container">
       
             <?php

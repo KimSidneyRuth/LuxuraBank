@@ -105,7 +105,7 @@ $id = $_SESSION['id'];
           </a>
         </li>
         <li>
-          <a href="admin-customerPage">
+          <a href="admin_news.php">
             <i class="bx bx-book-alt"></i>
             <span class="links_name">Announcements</span>
           </a>
