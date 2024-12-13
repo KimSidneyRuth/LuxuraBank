@@ -139,7 +139,7 @@ if (isset($_POST['Register'])) {
                 $subject = "Sucessfully Registered!";
                 $message = "Dear, $firstName, you are now registered in Luxura Bank. Your user id is <b>$userId</b>. Your account number for your $accountType is  <b>$acc_no</b>  . Keep your information secured.  To access all features, verify your account. Enjoy seamless bank transactions with LUXURA!" ;
                
-                if(sendMail($email, $subject, $message, $message2)){
+                if(sendMail($email, $subject, $message)){
                     
                     $info = "We've sent your account number to your email - $email.";
                     $_SESSION['info'] = $info;

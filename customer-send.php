@@ -349,15 +349,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
                     <label for="amount">Amount:</label>
                     <input type="number" id="amount" name="amount" min="0.01" step="0.01" required>
                 </div>
-                <div class="form-group">
-                    <label for="currency">Currency:</label>
-                    <select id="currency" name="currency" required>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="JPY">JPY</option>
-                    </select>
-                </div>
+              
                 <div class="trans-form-group">
                     <label for="description">Description (Optional):</label>
                     <input type="text" id="description" name="description">

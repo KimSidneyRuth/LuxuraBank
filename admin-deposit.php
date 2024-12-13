@@ -285,7 +285,7 @@ if(isset($_POST['save'])){
    ?>
 
 
-<form action="admin-walkin.php" method = "POST" enctype="multipart/form-data">
+<form action="admin-deposit.php" method = "POST" enctype="multipart/form-data">
 
     <?php
          if($fetch['image'] == ''){
@@ -300,17 +300,17 @@ if(isset($_POST['save'])){
          }
       ?>
 
-<div class="edit-profile-container" style="width:100vw">
+<div class="edit-profile-container" style="width:75vw">
     <!-- Left Section: Profile Photo -->
     <div class="sidenav">
         <div class="sidenav-url">
             
             <div class="url">
-                <h2><a href="admin-walkin.php"class="active">Open Account</a></h2>
+                <h2><a href="admin-walkin.php">Open Account</a></h2>
                 <hr align="center">
             </div>
             <div class="url">
-                <h2><a href="admin-deposit.php">Deposit</a></h2>
+                <h2><a href="admin-deposit.php" class="active">Deposit</a></h2>
                 <hr align="center">
             </div>
             <div class="url">
@@ -328,7 +328,7 @@ if(isset($_POST['save'])){
 
     <!-- Right Section: Profile Info -->
     <div class="profile-info">
-        <h2 class>Open Account</h2>
+       
         <?php
 if (isset($_SESSION['info'])) {
     ?>
@@ -356,167 +356,225 @@ if (count($errors) > 0) {
     <?php
 }
 ?>
-        <div class="form-grid">
-                    <label for="userId">User ID *</label>
-                    <input type="text" id="userId" name="userId" class="input" value="<?php echo $generatedUserId; ?>" readonly>
+     
+     <div class="dcontainer">
+     <h1>Deposit</h1>
+        <form id="depositForm">
+            <div class="section">
+                <h2 class="section-title">Client Information</h2>
+                <div class="dform-group">
+                    <label for="accountNumber">Account Number:</label>
+                    <input type="text" id="accountNumber" name="accountNumber" required>
                 </div>
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="firstName">First Name*</label>
-                <input type="text" name="firstName" placeholder="Enter first name.">
-
-            </div>
-          
-        
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" placeholder="Enter email address">
-            </div>
-            <div class="form-group">
-                <label for="firstName">Middle Name*</label>
-                <input type="text" name="middleName" placeholder="Enter middle name">
-
-            </div>
-            <div class="form-group">
-                <label for="bday">Birthday</label>
-                <input type="date" name="birthday" placeholder="Enter birthday">
-            </div>
-            <div class="form-group">
-                <label for="firstName">Last Name*</label>
-                <input type="text" name="lastName" placeholder="Enter last name">
-
-            </div>
-            <div class="form-group">
-                <label for="firstName">Valid ID Number*</label>
-                <input type="text" name="validID" placeholder="Enter valid id number">
-
-            </div>
-            <div class="form-group">
-                <label for="Phone">Phone Number*</label>
-                <input type="text" name="phoneNumber" placeholder="Enter phone number">
-
-</div>
-            
-
-            <div class="form-group">
-            <label>Account Type *</label>
-          <div class="custom_select">
-            <select id="account-type" name="account-type" title="(Select your type of account)" required>
-              <option>--Select type of account--</option>
-              <option value="Checking Account">Checking Account</option>
-              <option value="Savings-Account">Savings Account</option>
-              <option value="Credit Account">Salary Account</option>
-              <option value="Fixed-Deposit-Account">Fixed Deposit Account</option>
-              <option value="CreditCard">Credit Card</option>
-            </select>
-          </div>
-
-
-         
-            
-
-          <div class="form-group">
-                <label for="">Sex *</label>
-                <input type="radio" name="sex" id="radio" value="Male">Male
-                <input type="radio" name="sex" id="radio" value="Female">Female
-
+                <div class="dform-group">
+                    <label for="customerName">Client Name:</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                <div class="dform-group">
+                    <label for="idType">ID Type:</label>
+                    <select id="idType" name="idType" required>
+                        <option value="">Select ID Type</option>
+                        <option value="driverLicense">Driver's License</option>
+                        <option value="passport">Passport</option>
+                        <option value="nationalId">National ID</option>
+                    </select>
+                </div>
+                <div class="dform-group">
+                    <label for="idNumber">ID Number:</label>
+                    <input type="text" id="idNumber" name="idNumber" required>
+                </div>
             </div>
 
+            <div class="dsection">
+                <h2 class="section-title">Deposit Information</h2>
+               
+                <div class="dform-group">
+                    <label for="amount">Deposit Amount (₱):</label>
+                    <input type="number" id="amount" name="amount" min="5,000.00" step="0.01" required>
+                </div>
+                <div id="checkDetails" style="display: none;">
+                    <div class="dform-group">
+                        <label for="checkNumber">Check Number:</label>
+                        <input type="text" id="checkNumber" name="checkNumber">
+                    </div>
+                    <div class="dform-group">
+                        <label for="bankName">Issuing Bank:</label>
+                        <input type="text" id="bankName" name="bankName">
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-            <label>Password *</label>
-                <input type="password" class="input" id="password" name="password" placeholder="Create your password min 8 characters"
-                    autocomplete="off"
-                    title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
-                    maxlength="100" minlength="8" required>
 
-            </div>
-            <div class="form-group">
-                <label>Confirm Password *</label>
-            <input type="password"  class="input" id="confirm-password" name="confirm-password"
-                placeholder="Confirm password" autocomplete="off"
-                title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
-                maxlength="100" minlength="8" required>
+            <div class="summary">
+                <h3>Transaction Summary</h3>
+                <p><strong>Account Number:</strong> <span id="summaryAccount"></span></p>
+                <p><strong>Customer Name:</strong> <span id="summaryName"></span></p>
+                <p><strong>Deposit Method:</strong> <span id="summaryMethod"></span></p>
+                <p><strong>Deposit Amount:</strong> ₱<span id="summaryAmount"></span></p>
             </div>
 
-            <div style="">
-            <label>Address *</label>
-                <input type="text" class="input" id="address" name="address" placeholder="Address"
-                    autocomplete="off">
-
+            <div style="text-align: right; margin-top: 20px;">
+                <button type="button" class="btn btn-secondary" style="margin-right: 10px;">Cancel</button>
+                <button type="submit" class="btn">Complete Deposit</button>
             </div>
-          
-            
-           
-            
-            
-        
-
-        <!-- Buttons -->
-        <div class="buttons">
-            <button class="btn cancel">Cancel</button>
-            <button class="btn save" name = "Register">Save</button>
-        </div>
+        </form>
     </div>
-</div>
-<style>
-
-body {
-            margin: 0;
-            padding: 0;
-        }
-        .edit-profile-container {
-            display: flex;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 30px auto;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 70px;
-        }
-
-        .btn.save {
-  background-color: #D4BEE4;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 3px;
-}
-.btn.cancel {
-    background-color: #D4BEE4;
-    color: #fff;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 3px;
-
-}
-input, select{
-    width: 100%;
-}
-
-
-        </style>
-
-
-
-
-           
-           
-
-
- 
 
 </form>
+<style>
+     .dcontainer {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .dform-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            .deposit-methods {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        .deposit-method {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .deposit-method:hover {
+            background-color: #f9f9f9;
+        }
+
+        .deposit-method.active {
+            background-color: #e0f7fa;
+            border-color: #3498db;
+        }
+
+        .dsection {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        .summary {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+
+        .summary h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .summary p {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .deposit-methods {
+                flex-direction: column;
+            }
+        }
+        }
+</style>
         </section>
 
 
     <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const depositMethods = document.querySelectorAll('.deposit-method');
+            const checkDetails = document.getElementById('checkDetails');
+            const form = document.getElementById('depositForm');
+            const amountInput = document.getElementById('amount');
+            const minimumDeposit = 5000; // Minimum deposit amount in pesos
+
+            depositMethods.forEach(method => {
+                method.addEventListener('click', function () {
+                    depositMethods.forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+                    checkDetails.style.display = this.dataset.method === 'check' ? 'block' : 'none';
+                    document.getElementById('summaryMethod').textContent = this.textContent;
+                });
+            });
+         form.addEventListener('input', function () {
+                document.getElementById('summaryAccount').textContent = document.getElementById('accountNumber').value;
+                document.getElementById('summaryName').textContent = document.getElementById('customerName').value;
+                document.getElementById('summaryAmount').textContent = amountInput.value;
+            });
+
+            form.addEventListener('submit', function (e) {
+                const depositAmount = parseFloat(amountInput.value);
+
+                if (depositAmount < minimumDeposit) {
+                    e.preventDefault();
+                    alert(`Deposit amount must be at least ₱${minimumDeposit.toLocaleString()}.`);
+                }
+            });
+        });
 
         
    

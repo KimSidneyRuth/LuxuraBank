@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Money</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        h1 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+        input, select {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 0.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        #adminApproval {
+            display: none;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Withdraw Money</h1>
+        <form id="withdrawForm">
+            <label for="accNumber">Account Number:</label>
+            <input type="text" id="accNumber" name="accNumber" required>
+
+            <label for="accName">Account Name:</label>
+            <input type="text" id="accName" name="accName" required>
+
+            <label for="amount">Withdrawal Amount:</label>
+            <input type="number" id="amount" name="amount" min="0.01" step="0.01" required>
+
+            <label for="purpose">Transaction Purpose (optional):</label>
+            <input type="text" id="purpose" name="purpose">
+
+            <label for="approvalCode">Approval Code:</label>
+            <input type="text" id="approvalCode" name="approvalCode" required>
+
+            <button type="submit" id="withdrawButton">Submit Withdrawal Request</button>
+        </form>
+        <div id="message" class="message" style="display: none;"></div>
+        <div id="adminApproval">
+            <h2>Admin Approval</h2>
+            <input type="password" id="adminPassword" placeholder="Enter admin password">
+            <button id="approveButton">Approve Transaction</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('withdrawForm');
+            const withdrawButton = document.getElementById('withdrawButton');
+            const messageDiv = document.getElementById('message');
+            const adminApprovalDiv = document.getElementById('adminApproval');
+            const adminPasswordInput = document.getElementById('adminPassword');
+            const approveButton = document.getElementById('approveButton');
+
+            // Simulated admin password
+            const ADMIN_PASSWORD = 'admin123';
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const accNumber = document.getElementById('accNumber').value;
+                const accName = document.getElementById('accName').value;
+                const amount = parseFloat(document.getElementById('amount').value);
+                const purpose = document.getElementById('purpose').value;
+                const approvalCode = document.getElementById('approvalCode').value;
+
+                if (!accNumber || !accName || isNaN(amount) || amount <= 0 || !approvalCode) {
+                    showMessage('Please fill all required fields with valid information.', 'error');
+                    return;
+                }
+
+                withdrawButton.disabled = true;
+                withdrawButton.textContent = 'Processing...';
+
+                // Simulate initial processing
+                setTimeout(function() {
+                    showMessage('Withdrawal request submitted. Waiting for admin approval.', 'success');
+                    adminApprovalDiv.style.display = 'block';
+                    withdrawButton.style.display = 'none';
+                }, 1500);
+            });
+
+            approveButton.addEventListener('click', function() {
+                const adminPassword = adminPasswordInput.value;
+
+                if (adminPassword !== ADMIN_PASSWORD) {
+                    showMessage('Invalid admin password. Approval failed.', 'error');
+                    return;
+                }
+
+                approveButton.disabled = true;
+                approveButton.textContent = 'Approving...';
+
+                // Simulate final approval process
+                setTimeout(function() {
+                    const success = Math.random() < 0.8; // 80% success rate
+                    if (success) {
+                        showMessage('Withdrawal approved and processed successfully!', 'success');
+                    } else {
+                        showMessage('Withdrawal approval failed. Please try again.', 'error');
+                    }
+                    resetForm();
+                }, 1500);
+            });
+
+            function showMessage(text, type) {
+                messageDiv.textContent = text;
+                messageDiv.className = `message ${type}`;
+                messageDiv.style.display = 'block';
+            }
+
+            function resetForm() {
+                form.reset();
+                withdrawButton.disabled = false;
+                withdrawButton.textContent = 'Submit Withdrawal Request';
+                withdrawButton.style.display = 'block';
+                adminApprovalDiv.style.display = 'none';
+                approveButton.disabled = false;
+                approveButton.textContent = 'Approve Transaction';
+                adminPasswordInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

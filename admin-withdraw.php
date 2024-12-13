@@ -285,7 +285,7 @@ if(isset($_POST['save'])){
    ?>
 
 
-<form action="admin-walkin.php" method = "POST" enctype="multipart/form-data">
+<form action="admin-withdraw.php" method = "POST" enctype="multipart/form-data">
 
     <?php
          if($fetch['image'] == ''){
@@ -300,13 +300,13 @@ if(isset($_POST['save'])){
          }
       ?>
 
-<div class="edit-profile-container" style="width:100vw">
+<div class="edit-profile-container" style="width:75vw">
     <!-- Left Section: Profile Photo -->
     <div class="sidenav">
         <div class="sidenav-url">
             
             <div class="url">
-                <h2><a href="admin-walkin.php"class="active">Open Account</a></h2>
+                <h2><a href="admin-walkin.php">Open Account</a></h2>
                 <hr align="center">
             </div>
             <div class="url">
@@ -314,11 +314,11 @@ if(isset($_POST['save'])){
                 <hr align="center">
             </div>
             <div class="url">
-                <h2><a href="admin-withdraw.php">Withdraw</a></h2>
+                <h2><a href="admin-withdraw.php" class="active">Withdraw</a></h2>
                 <hr align="center">
             </div>
             <div class="url">
-                <h2><a href="admin-applyLoan.php" >Loan/Credit</a></h2>
+                <h2><a href="admin-applyLoan.php">Loan/Credit</a></h2>
                 <hr align="center">
             </div>
             
@@ -328,7 +328,7 @@ if(isset($_POST['save'])){
 
     <!-- Right Section: Profile Info -->
     <div class="profile-info">
-        <h2 class>Open Account</h2>
+       
         <?php
 if (isset($_SESSION['info'])) {
     ?>
@@ -356,168 +356,185 @@ if (count($errors) > 0) {
     <?php
 }
 ?>
-        <div class="form-grid">
-                    <label for="userId">User ID *</label>
-                    <input type="text" id="userId" name="userId" class="input" value="<?php echo $generatedUserId; ?>" readonly>
-                </div>
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="firstName">First Name*</label>
-                <input type="text" name="firstName" placeholder="Enter first name.">
+     
+    
 
-            </div>
-          
-        
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" placeholder="Enter email address">
-            </div>
-            <div class="form-group">
-                <label for="firstName">Middle Name*</label>
-                <input type="text" name="middleName" placeholder="Enter middle name">
+     <div class="dcontainer">
+        <h1>Withdraw Money</h1>
+        <form id="withdrawForm">
+            <label for="accNumber">Account Number:</label>
+            <input type="text" id="accNumber" name="accNumber" required>
 
-            </div>
-            <div class="form-group">
-                <label for="bday">Birthday</label>
-                <input type="date" name="birthday" placeholder="Enter birthday">
-            </div>
-            <div class="form-group">
-                <label for="firstName">Last Name*</label>
-                <input type="text" name="lastName" placeholder="Enter last name">
+            <label for="accName">Account Name:</label>
+            <input type="text" id="accName" name="accName" required>
 
-            </div>
-            <div class="form-group">
-                <label for="firstName">Valid ID Number*</label>
-                <input type="text" name="validID" placeholder="Enter valid id number">
+            <label for="amount">Withdrawal Amount:</label>
+            <input type="number" id="amount" name="amount" min="5,000.00" step="0.01" required>
 
-            </div>
-            <div class="form-group">
-                <label for="Phone">Phone Number*</label>
-                <input type="text" name="phoneNumber" placeholder="Enter phone number">
+            <label for="purpose">Transaction Purpose (optional):</label>
+            <input type="text" id="purpose" name="purpose">
 
-</div>
-            
+            <label for="approvalCode">Approval Code:</label>
+            <input type="text" id="approvalCode" name="approvalCode" required>
 
-            <div class="form-group">
-            <label>Account Type *</label>
-          <div class="custom_select">
-            <select id="account-type" name="account-type" title="(Select your type of account)" required>
-              <option>--Select type of account--</option>
-              <option value="Checking Account">Checking Account</option>
-              <option value="Savings-Account">Savings Account</option>
-              <option value="Credit Account">Salary Account</option>
-              <option value="Fixed-Deposit-Account">Fixed Deposit Account</option>
-              <option value="CreditCard">Credit Card</option>
-            </select>
-          </div>
-
-
-         
-            
-
-          <div class="form-group">
-                <label for="">Sex *</label>
-                <input type="radio" name="sex" id="radio" value="Male">Male
-                <input type="radio" name="sex" id="radio" value="Female">Female
-
-            </div>
-
-            </div>
-            <div class="form-group">
-            <label>Password *</label>
-                <input type="password" class="input" id="password" name="password" placeholder="Create your password min 8 characters"
-                    autocomplete="off"
-                    title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
-                    maxlength="100" minlength="8" required>
-
-            </div>
-            <div class="form-group">
-                <label>Confirm Password *</label>
-            <input type="password"  class="input" id="confirm-password" name="confirm-password"
-                placeholder="Confirm password" autocomplete="off"
-                title="(Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)"
-                maxlength="100" minlength="8" required>
-            </div>
-
-            <div style="">
-            <label>Address *</label>
-                <input type="text" class="input" id="address" name="address" placeholder="Address"
-                    autocomplete="off">
-
-            </div>
-          
-            
-           
-            
-            
-        
-
-        <!-- Buttons -->
-        <div class="buttons">
-            <button class="btn cancel">Cancel</button>
-            <button class="btn save" name = "Register">Save</button>
+            <button type="submit" id="withdrawButton">Submit Withdrawal Request</button>
+        </form>
+        <div id="message" class="message" style="display: none;"></div>
+        <div id="adminApproval">
+            <h2>Admin Approval</h2>
+            <input type="password" id="adminPassword" placeholder="Enter admin password">
+            <button id="approveButton">Approve Transaction</button>
         </div>
     </div>
-</div>
-<style>
 
-body {
-            margin: 0;
-            padding: 0;
-        }
-        .edit-profile-container {
-            display: flex;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 30px auto;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 70px;
+    <style>
+    
+     .dcontainer {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .btn.save {
-  background-color: #D4BEE4;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 3px;
-}
-.btn.cancel {
-    background-color: #D4BEE4;
-    color: #fff;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 3px;
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-}
-input, select{
-    width: 100%;
-}
-
-
-        </style>
-
-
-
-
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 1rem;
            
-           
-
-
- 
-
-</form>
-
+        }
+        button {
+            padding: 0.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        #adminApproval {
+            display: none;
+            margin-top: 1rem;
+        }
+    </style>
         </section>
+
 
 
     <script>
 
+document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('withdrawForm');
+            const withdrawButton = document.getElementById('withdrawButton');
+            const messageDiv = document.getElementById('message');
+            const adminApprovalDiv = document.getElementById('adminApproval');
+            const adminPasswordInput = document.getElementById('adminPassword');
+            const approveButton = document.getElementById('approveButton');
+
+            // Simulated admin password
+            const ADMIN_PASSWORD = 'admin123';
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const accNumber = document.getElementById('accNumber').value;
+                const accName = document.getElementById('accName').value;
+                const amount = parseFloat(document.getElementById('amount').value);
+                const purpose = document.getElementById('purpose').value;
+                const approvalCode = document.getElementById('approvalCode').value;
+
+                if (!accNumber || !accName || isNaN(amount) || amount <= 0 || !approvalCode) {
+                    showMessage('Please fill all required fields with valid information.', 'error');
+                    return;
+                }
+
+                withdrawButton.disabled = true;
+                withdrawButton.textContent = 'Processing...';
+
+                // Simulate initial processing
+                setTimeout(function() {
+                    showMessage('Withdrawal request submitted. Waiting for admin approval.', 'success');
+                    adminApprovalDiv.style.display = 'block';
+                    withdrawButton.style.display = 'none';
+                }, 1500);
+            });
+
+            approveButton.addEventListener('click', function() {
+                const adminPassword = adminPasswordInput.value;
+
+                if (adminPassword !== ADMIN_PASSWORD) {
+                    showMessage('Invalid admin password. Approval failed.', 'error');
+                    return;
+                }
+
+                approveButton.disabled = true;
+                approveButton.textContent = 'Approving...';
+
+                // Simulate final approval process
+                setTimeout(function() {
+                    const success = Math.random() < 0.8; // 80% success rate
+                    if (success) {
+                        showMessage('Withdrawal approved and processed successfully!', 'success');
+                    } else {
+                        showMessage('Withdrawal approval failed. Please try again.', 'error');
+                    }
+                    resetForm();
+                }, 1500);
+            });
+
+            function showMessage(text, type) {
+                messageDiv.textContent = text;
+                messageDiv.className = `message ${type}`;
+                messageDiv.style.display = 'block';
+            }
+
+            function resetForm() {
+                form.reset();
+                withdrawButton.disabled = false;
+                withdrawButton.textContent = 'Submit Withdrawal Request';
+                withdrawButton.style.display = 'block';
+                adminApprovalDiv.style.display = 'none';
+                approveButton.disabled = false;
+                approveButton.textContent = 'Approve Transaction';
+                adminPasswordInput.value = '';
+            }
+        });
+        
         
    
   let sidebar = document.querySelector(".sidebar");
