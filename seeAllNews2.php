@@ -245,6 +245,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
 
 
 </nav>
+<!--mula here-->
 
     <?php
       $select = mysqli_query($con, "SELECT * FROM `admin` WHERE id = '$id'") or die('query failed');
@@ -357,7 +358,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
 }
 
 .flex-container-title {
-    display: flex;
+    
     background-color: #2E7D32;
     padding: 10px;
     align-items: center;
@@ -390,6 +391,7 @@ p#news_body {
 }
 
 </style>
+<!--gang dito-->
 
         </section>
 
