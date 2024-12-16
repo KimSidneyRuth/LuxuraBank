@@ -338,13 +338,13 @@ if (isset($_POST['create_acc_type'])) {
 
         /* Header row style */
         table th {
-            background-color: #6a1b9a;
+            background-color: #d4bee4;
             color: white;
         }
         th{
           text-align: center;
         }
-
+       
         /* Alternating row colors */
         table tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -383,7 +383,8 @@ if (isset($_POST['create_acc_type'])) {
         <!-- Table to display client details -->
         <table>
             <thead>
-                <tr> 
+                <tr>
+                    <th>Select</th>
                     <th>#</th>
                     <th>User ID</th>
                     <th>Name</th>
@@ -414,6 +415,7 @@ if (isset($_POST['create_acc_type'])) {
 
                                             ?>
                                             <tr>
+                                            <th><input type="checkbox" name="delete_ids[]"></th>
                                             <th scope="row" class="align-middle"><?php echo $cnt; ?></th>
                                             <td class="align-middle"><?php echo $row->userId; ?></td>
                                                     <td><?php   echo $row->firstName 
@@ -425,18 +427,17 @@ if (isset($_POST['create_acc_type'])) {
                                                     <td><?php echo $row->Address; ?></td>
                                                     
                                                     <td>
-                                                    <button class="btn">Deposit</button>
+                                                    <!--<i class="fa-solid fa-pen"></i>
+                                                    <i class="fa-solid fa-ban"></i>
+                                                    <i class="fa-solid fa-box-archive"></i>-->
+                                                    <input type="submit" name = "pindot" value = "Edit">
+                                                    
                                                     </td>
-                                                    <td>
-                                                    <button class="btn">Withdraw</button>
-                                                    </td>
-                                                    <td>
-                                                    <button class="btn">Apply Loan</button>
-                                                    </td>
-                                                    <td>
-                                                    <button class="btn">Pay Loan</button>
-                                                    </td>
-
+                                                    <td><input type="submit" name = "pindot" value = "Archive"></td>
+                                                  <td><input type="submit" name = "pindot" value = "Block"></td>
+                                                
+                                                    
+                                                   
 </tr>
 
 <?php $cnt = $cnt + 1;
