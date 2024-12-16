@@ -311,10 +311,7 @@ if(isset($_POST['save'])){
                 <h2><a href="acc-settingsProf.php" class="active">Profile</a></h2>
                 <hr align="center">
             </div>
-            <div class="url">
-                <h2><a href="#settings">Settings</a></h2>
-                <hr align="center">
-            </div>
+            
             <div class="url">
                 <h2><a href="acc-pass.php">Password</a></h2>
                 <hr align="center">

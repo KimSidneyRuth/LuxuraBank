@@ -59,7 +59,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+    
   </head>
   <body>
     <form action="customer-side.php" method = "POST"></form>
@@ -221,7 +221,47 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
     
       </nav>
       
-      <div class="lcontainer">
+      <div class="edit-profile-container" style="width:75vw">
+    <!-- Left Section: Profile Photo -->
+    <div class="sidenav">
+        <div class="sidenav-url">
+            
+    </div>
+ 
+
+    <!-- Right Section: Profile Info -->
+    <div class="profile-info">
+      
+        <?php
+if (isset($_SESSION['info'])) {
+    ?>
+    <div class="alert alert-success text-center">
+        <?php echo $_SESSION['info']; ?>
+    </div>
+    <?php
+    unset($_SESSION['info']); // Clear the session message after showing it
+}
+?>
+
+<!-- Display Error Messages -->
+<?php
+
+$errors = [];
+if (count($errors) > 0) {
+    ?>
+    <div class="alert alert-danger text-center">
+        <?php
+        foreach ($errors as $showerror) {
+            echo $showerror . '<br>'; // Display each error on a new line
+        }
+        ?>
+    </div>
+    <?php
+}
+
+?>
+<form action="admin-applyLoan.php" method = "POST">
+        <div class="lcontainer">
         <h1>Apply for a Loan</h1>
         
         <form id="applicationForm">
@@ -272,7 +312,6 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
     </div>
     <style>
        .lcontainer {
-            margin-top: 70px;
             max-width: 800px;
             margin: 0 auto;
             background-color: #fff;
@@ -321,17 +360,12 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
         }
 
         form {
-          margin-top: 70px;
             display: grid;
             gap: 1rem;
         }
 
         label {
             font-weight: bold;
-        }
-        .sidebar{
-          position: fixed;
-          top: 0;
         }
 
         input, select {
@@ -417,8 +451,17 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
         }
     </style>
 
-      
-      
+
+
+
+           
+           
+
+
+ 
+
+</form>
+
                     
 
 

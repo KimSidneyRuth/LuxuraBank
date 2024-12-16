@@ -1,11 +1,12 @@
-<?php require_once "controllerUserData.php";
+<?php require_once "loan.php";
 
 
 include "connection.php";
+session_start();
 
 
 
-if (!isset($_SESSION['name'])) {
+if (!isset($_SESSION['id'])) {
     // Redirect to login page if the user is not logged in
  
     header('location: login-user.php');
@@ -54,51 +55,6 @@ $userData = mysqli_fetch_assoc($result);
 // Set a default image if no profile image exists
 $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'default_user.png';
 
-if(isset($_POST['save'])){
-    $id = $_SESSION['id'];
-    $name = mysqli_real_escape_string($con, $_POST['name']);
-    $bday = mysqli_real_escape_string($con, $_POST['birthday']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
- 
-    mysqli_query($con, "UPDATE admin SET name = '$name', birthday = '$bday', email = '$email'  WHERE id = '$id'") or die('query failed');
-    
-    $_SESSION['admin']['name'] = $name;
-    $_SESSION['admin']['birthday'] = $bday;
-    $_SESSION['admin']['email'] = $email;
- 
-
- }
-
- if (isset($_POST['upload'])) {
-    $message = [];
-
-    // File upload logic
-    if (isset($_FILES['upload_photo']) && $_FILES['upload_photo']['error'] == 0) {
-        $update_image = $_FILES["upload_photo"]['name'];
-        $update_image_size = $_FILES['upload_photo']['size'];
-        $update_image_tmp_name = $_FILES['upload_photo']['tmp_name'];
-        $update_image_folder = 'uploaded_img/' . $update_image;
-
-        // Check if the image is not empty
-        if (!empty($update_image)) {
-            // Check if the image size is within the limit
-            if ($update_image_size > 2000000) {
-                $message[] = 'Image is too large';
-            } else {
-                // Database update logic here
-                $image_update_query = mysqli_query($con, "UPDATE `admin` SET image = '$update_image' WHERE id = '$id'") or die('Query failed: ' . mysqli_error($con));
-                
-                if ($image_update_query) {
-                    // Move the uploaded file to the desired folder
-                    move_uploaded_file($update_image_tmp_name, $update_image_folder);
-                    $_SESSION['info'] = 'Image updated successfully!';
-                }
-            }
-        }
-    } else {
-        $errors[] = 'No file uploaded or error with upload.';
-    }
-}
 
 
 
@@ -124,7 +80,7 @@ if(isset($_POST['save'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <form action="admin-walfin.php" method = "POST"></form>
+    <form action="admin-applyLoan.php" method = "POST"></form>
     <div class="sidebar">
       <div class="logo-details">
        
@@ -285,20 +241,8 @@ if(isset($_POST['save'])){
    ?>
 
 
-<form action="admin-applyLoan.php" method = "POST" enctype="multipart/form-data">
+<form action="admin-applyLoan.php" method = "POST">
 
-    <?php
-         if($fetch['image'] == ''){
-            echo '<img src="default-user.png">';
-         }else{
-            
-         }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="message">'.$message.'</div>';
-            }
-         }
-      ?>
 
 <div class="edit-profile-container" style="width:75vw">
     <!-- Left Section: Profile Photo -->
@@ -328,7 +272,7 @@ if(isset($_POST['save'])){
 
     <!-- Right Section: Profile Info -->
     <div class="profile-info">
-        <h2 class>Apply for a Loan or Credit Card</h2>
+      
         <?php
 if (isset($_SESSION['info'])) {
     ?>
@@ -355,31 +299,26 @@ if (count($errors) > 0) {
     </div>
     <?php
 }
+
 ?>
+<form action="admin-applyLoan.php" method = "POST">
         <div class="lcontainer">
-        <h1>Apply for a Loan or Credit Card</h1>
-        <div class="tabs">
-            <div class="tab active" id="loanTab">Loan Application</div>
-            <div class="tab" id="creditCardTab">Credit Card Application</div>
-        </div>
+        <h1>Apply for a Loan</h1>
+        
         <form id="applicationForm">
+        <label for="email">User ID:</label>
+        <input type="text" id="id" name="id" required>
+
             <label for="fullName">Full Name:</label>
             <input type="text" id="fullName" name="fullName" required>
 
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required>
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
-
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required>
-
-            <label for="ssn">Social Security Number:</label>
-            <input type="text" id="ssn" name="ssn" required pattern="\d{3}-\d{2}-\d{4}" placeholder="123-45-6789">
 
             <label for="income">Annual Income:</label>
             <input type="number" id="income" name="income" required min="0" step="1000">
+            
+            <label for="income">Rate:</label>
+            <input type="number" id="rate" name="rate" value = "15" readonly>
 
             <label for="employmentStatus">Employment Status:</label>
             <select id="employmentStatus" name="employmentStatus" required>
@@ -406,24 +345,8 @@ if (count($errors) > 0) {
                 </select>
             </div>
 
-            <div id="creditCardFields" style="display: none;">
-                <div class="credit-card">
-                    <div class="card-logo">BANK</div>
-                    <div class="card-number">**** **** **** ****</div>
-                    <div class="card-holder">FULL NAME</div>
-                    <div class="card-expiry">MM/YY</div>
-                </div>
-
-                <label for="cardType">Preferred Card Type:</label>
-                <select id="cardType" name="cardType">
-                    <option value="">Select an option</option>
-                    <option value="rewards">Rewards Card</option>
-                    <option value="cashback">Cashback Card</option>
-                    <option value="lowInterest">Low Interest Card</option>
-                    <option value="student">Student Card</option>
-                    <option value="secured">Secured Card</option>
-                </select>
-            </div>
+           
+           
 
             <button type="submit">Submit Application</button>
         </form>
@@ -585,30 +508,6 @@ if (count($errors) > 0) {
 
     <script>
 
-const loanTab = document.getElementById('loanTab');
-        const creditCardTab = document.getElementById('creditCardTab');
-        const loanFields = document.getElementById('loanFields');
-        const creditCardFields = document.getElementById('creditCardFields');
-        const fullNameInput = document.getElementById('fullName');
-        const cardHolder = document.querySelector('.card-holder');
-
-        loanTab.addEventListener('click', () => {
-            loanTab.classList.add('active');
-            creditCardTab.classList.remove('active');
-            loanFields.style.display = 'block';
-            creditCardFields.style.display = 'none';
-        });
-
-        creditCardTab.addEventListener('click', () => {
-            creditCardTab.classList.add('active');
-            loanTab.classList.remove('active');
-            creditCardFields.style.display = 'block';
-            loanFields.style.display = 'none';
-        });
-
-        fullNameInput.addEventListener('input', (e) => {
-            cardHolder.textContent = e.target.value.toUpperCase() || 'FULL NAME';
-        });
 
         
    

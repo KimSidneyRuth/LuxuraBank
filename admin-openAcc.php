@@ -341,6 +341,9 @@ if (isset($_POST['create_acc_type'])) {
             background-color: #6a1b9a;
             color: white;
         }
+        th{
+          text-align: center;
+        }
 
         /* Alternating row colors */
         table tr:nth-child(even) {
@@ -389,7 +392,8 @@ if (isset($_POST['create_acc_type'])) {
                     <th>Contact</th>
                     <th>Email</th>
                     <th>Address</th>
-                    <th>Action</th>
+                    <th colspan = "4" text-align: center;>Action</th>
+                  
                 </tr>
             </thead>
             <tbody id = "results">
@@ -421,7 +425,16 @@ if (isset($_POST['create_acc_type'])) {
                                                     <td><?php echo $row->Address; ?></td>
                                                     
                                                     <td>
-                                                    <button class="btn">Open Account</button>
+                                                    <button class="btn">Deposit</button>
+                                                    </td>
+                                                    <td>
+                                                    <button class="btn">Withdraw</button>
+                                                    </td>
+                                                    <td>
+                                                    <button class="btn">Apply Loan</button>
+                                                    </td>
+                                                    <td>
+                                                    <button class="btn">Pay Loan</button>
                                                     </td>
 
 </tr>

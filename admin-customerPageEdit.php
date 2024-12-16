@@ -450,7 +450,7 @@ input[type="submit"]:hover {
             <input type="file" name="slide_image" id="slide_image" <?php echo isset($slide) ? '' : 'required'; ?>>
         </div>
 
-        <button type="submit" class="submit-btn"><?php echo isset($slide) ? 'Update Slide' : 'Add Slide'; ?></button>
+        <button type="submit" class="submit-btn"><?php echo isset($slide) ? 'Update Slide' : 'Add Slide'; ?> </button>
     </form>
 </div>
 

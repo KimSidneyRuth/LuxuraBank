@@ -1,11 +1,12 @@
-<?php require_once "controllerUserData.php";
+<?php require_once "withdraw.php";
 
 
 include "connection.php";
+session_start();
 
 
 
-if (!isset($_SESSION['name'])) {
+if (!isset($_SESSION['id'])) {
     // Redirect to login page if the user is not logged in
  
     header('location: login-user.php');
@@ -287,18 +288,7 @@ if(isset($_POST['save'])){
 
 <form action="admin-withdraw.php" method = "POST" enctype="multipart/form-data">
 
-    <?php
-         if($fetch['image'] == ''){
-            echo '<img src="default-user.png">';
-         }else{
-            
-         }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="message">'.$message.'</div>';
-            }
-         }
-      ?>
+  
 
 <div class="edit-profile-container" style="width:75vw">
     <!-- Left Section: Profile Photo -->
@@ -363,19 +353,19 @@ if (count($errors) > 0) {
         <h1>Withdraw Money</h1>
         <form id="withdrawForm">
             <label for="accNumber">Account Number:</label>
-            <input type="text" id="accNumber" name="accNumber" required>
+            <input type="text" id="acc_no" name="acc_no" required>
 
             <label for="accName">Account Name:</label>
-            <input type="text" id="accName" name="accName" required>
+            <input type="text" id="c-name" name="c-ame" required>
 
             <label for="amount">Withdrawal Amount:</label>
             <input type="number" id="amount" name="amount" min="5,000.00" step="0.01" required>
 
-            <label for="purpose">Transaction Purpose (optional):</label>
+            <!--<label for="purpose">Transaction Purpose (optional):</label>
             <input type="text" id="purpose" name="purpose">
 
             <label for="approvalCode">Approval Code:</label>
-            <input type="text" id="approvalCode" name="approvalCode" required>
+            <input type="text" id="approvalCode" name="approvalCode" required>-->
 
             <button type="submit" id="withdrawButton">Submit Withdrawal Request</button>
         </form>

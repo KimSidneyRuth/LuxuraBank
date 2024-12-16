@@ -1,11 +1,12 @@
-<?php require_once "controllerUserData.php";
+<?php require_once "deposit.php";
 
 
 include "connection.php";
+session_start();
 
 
 
-if (!isset($_SESSION['name'])) {
+if (!isset($_SESSION['id'])) {
     // Redirect to login page if the user is not logged in
  
     header('location: login-user.php');
@@ -287,18 +288,7 @@ if(isset($_POST['save'])){
 
 <form action="admin-deposit.php" method = "POST" enctype="multipart/form-data">
 
-    <?php
-         if($fetch['image'] == ''){
-            echo '<img src="default-user.png">';
-         }else{
-            
-         }
-         if(isset($message)){
-            foreach($message as $message){
-               echo '<div class="message">'.$message.'</div>';
-            }
-         }
-      ?>
+ 
 
 <div class="edit-profile-container" style="width:75vw">
     <!-- Left Section: Profile Photo -->
@@ -364,13 +354,13 @@ if (count($errors) > 0) {
                 <h2 class="section-title">Client Information</h2>
                 <div class="dform-group">
                     <label for="accountNumber">Account Number:</label>
-                    <input type="text" id="accountNumber" name="accountNumber" required>
+                    <input type="text" id="acc_no" name="acc_no" required>
                 </div>
                 <div class="dform-group">
                     <label for="customerName">Client Name:</label>
-                    <input type="text" id="customerName" name="customerName" required>
+                    <input type="text" id="c-name" name="c-name" required>
                 </div>
-                <div class="dform-group">
+                <!--<div class="dform-group">
                     <label for="idType">ID Type:</label>
                     <select id="idType" name="idType" required>
                         <option value="">Select ID Type</option>
@@ -383,7 +373,7 @@ if (count($errors) > 0) {
                     <label for="idNumber">ID Number:</label>
                     <input type="text" id="idNumber" name="idNumber" required>
                 </div>
-            </div>
+            </div>-->
 
             <div class="dsection">
                 <h2 class="section-title">Deposit Information</h2>
@@ -392,7 +382,7 @@ if (count($errors) > 0) {
                     <label for="amount">Deposit Amount (₱):</label>
                     <input type="number" id="amount" name="amount" min="5,000.00" step="0.01" required>
                 </div>
-                <div id="checkDetails" style="display: none;">
+                <!--<div id="checkDetails" style="display: none;">
                     <div class="dform-group">
                         <label for="checkNumber">Check Number:</label>
                         <input type="text" id="checkNumber" name="checkNumber">
@@ -401,14 +391,14 @@ if (count($errors) > 0) {
                         <label for="bankName">Issuing Bank:</label>
                         <input type="text" id="bankName" name="bankName">
                     </div>
-                </div>
+                </div>-->
             </div>
 
             <div class="summary">
                 <h3>Transaction Summary</h3>
                 <p><strong>Account Number:</strong> <span id="summaryAccount"></span></p>
                 <p><strong>Customer Name:</strong> <span id="summaryName"></span></p>
-                <p><strong>Deposit Method:</strong> <span id="summaryMethod"></span></p>
+                <!--<p><strong>Deposit Method:</strong> <span id="summaryMethod"></span></p>-->
                 <p><strong>Deposit Amount:</strong> ₱<span id="summaryAmount"></span></p>
             </div>
 

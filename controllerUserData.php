@@ -130,7 +130,7 @@ if (isset($_POST['Register'])) {
            
             $status = "notverified";
           
-           $acc_no = rand(9999999999, 111111111);
+           $acc_no = rand(9999999, 1111111);
             $insertQuery = "INSERT INTO user (userId, firstName, lastName,middleName, email, accountType, account_no, phoneNumber, birthday, sex, password, verification_status, Address, validID) 
                             VALUES ('$userId', '$firstName', '$lastName', '$middleName', '$email', '$accountType', '$acc_no','$phoneNumber', '$birthday', '$sex', '$password', '$status', '$address', '$validID')";
 

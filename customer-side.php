@@ -141,7 +141,7 @@ if ($db->connect_error) {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="customer-loan.php">
             <i class="bx bx-book-alt"></i>
             <span class="links_name"  style="color: <?php echo FONT_COLOR; ?>">Apply Loan</span>
           </a>
