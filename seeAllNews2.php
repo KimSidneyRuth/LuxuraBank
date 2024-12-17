@@ -235,11 +235,13 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
             }
             #arrow {
             position: absolute;
-            top: 20px;
+            top: 0px;
+
             left: 20px;
             text-decoration: none;
             color: black;
         }
+
         </style>
 
 
@@ -291,7 +293,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
 
                         <div class="flex-item">
                             <!-- Checkbox for selecting news item -->
-                            <input type="checkbox" name="delete_ids[]" value="<?php echo $id; ?>">
+                            <input type="checkbox" id="news-checkbox" name="delete_ids[]" value="<?php echo $id; ?>">
                             
                             <div class="flex-container-title">
                                 <h1 id="title"><?php echo htmlspecialchars($row["title"]); ?></h1>
@@ -323,7 +325,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
                 $con->close();
             ?>
             <!-- Button to delete all selected items -->
-            <button type="submit" name="delete_selected" onclick="return confirm('Are you sure you want to delete the selected news items?');">Delete Selected</button>
+            <button  type="submit" id="delete_selected" onclick="return confirm('Are you sure you want to delete the selected news items?');">Delete Selected</button>
         </form>
     </section>
     </div>
@@ -394,6 +396,53 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
       .flex-container-actions button:hover {
         opacity: 0.9;
       }
+
+
+      #delete_selected {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #d4bee4;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#delete_selected:hover {
+    background-color: #c3a4d8;
+}
+
+#delete_selected:active {
+    transform: scale(0.98);
+}
+
+
+#flex-container-title {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    background-color: #d4bee4;
+    padding: 15px;
+    color: #333;
+}
+
+
+#news-checkbox {
+    position: absolute;
+    top:50px;
+    left:1000px;
+    margin-right: 10px; /* Space between checkbox and title */
+    cursor: pointer; /* Change cursor to pointer for better UX */
+    width: 20px; /* Adjust size of checkbox */
+    height: 20px; /* Adjust size of checkbox */
+}
+    
+
+      
     </style>
 
         </section>

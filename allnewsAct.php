@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             header("Location: seeAllNews2.php?message=error");
         }
-
+    }
     // Handle multiple deletion
-    } elseif (isset($_POST['delete_selected']) && !empty($_POST['delete_ids'])) {
+    elseif (isset($_POST['delete_selected']) && !empty($_POST['delete_ids'])) {
         $ids = $_POST['delete_ids'];
         $id_list = implode(",", array_map('intval', $ids));
         
@@ -30,7 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             header("Location: seeAllNews2.php?message=error");
         }
-
+    }
+    // Handle individual update
+    elseif (isset($_POST['update'])) {
+        $id = intval($_POST['update']);
+        header("Location: editNews.php?id=$id");
+        exit();
     } else {
         header("Location: seeAllNews2.php?message=error");
     }
