@@ -246,7 +246,6 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
 
 </nav>
 
-
     <?php
       $select = mysqli_query($con, "SELECT * FROM `admin` WHERE id = '$id'") or die('query failed');
       if(mysqli_num_rows($select) > 0){
@@ -276,7 +275,7 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
             <path d="M10 18L4 12L10 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </a>
-<div class="flex-container">
+<div class="flex-container" style=" margin-top:100px">
       
             <?php
                 $sql0 = "SELECT id, title, created FROM news ORDER BY created DESC";
@@ -332,65 +331,70 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
 
 </form>
 <style>
-    body, html {
-    height: 100%;
-    background-size: cover;
-    margin: 0;
-}
-
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    width: auto;
-    height: auto;
-    position: relative;
-    top: 70px;
-}
-
-.flex-item {
-    flex: 1 1 550px;
-    background-color: #EEEEEE;
-    max-height: 65vh;
-    margin: 10px;
-    overflow-y: auto;
-    box-shadow: 2px 3px 8px #888888;
-    border-radius: 4px;
-}
-
-.flex-container-title {
-    display: flex;
-    background-color: #2E7D32;
-    padding: 10px;
-    align-items: center;
-}
-
-.flex-container-body {
-    display: flex;
-    background-color: #EEEEEE;
-    padding: 20px;
-}
-
-h1#title {
-    font-family: 'Roboto', sans-serif;
-    color: #FAFAFA;
-    margin-left: 20px;
-}
-
-p#date, p#news_body {
-    font-family: 'Roboto', sans-serif;
-    margin-left: 20px;
-}
-
-p#date {
-    font-size: 20px;
-    color: #FAFAFA;
-}
-
-p#news_body {
-    font-size: 24px;
-}
-
-</style>
+      .sidebar{
+      position: fixed;
+      top:0;
+      }
+      /* New styles for announcements */
+      .flex-container {
+       
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        background-color: #f0e6f5;
+      }
+      .flex-item {
+        flex: 1 1 300px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+      }
+      .flex-container-title {
+        background-color: #d4bee4;
+        padding: 15px;
+        color: #333;
+      }
+      .flex-container-title h1 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+      .flex-container-title p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+      .flex-container-body {
+        padding: 15px;
+        color: #333;
+      }
+      .flex-container-actions {
+        padding: 15px;
+        text-align: right;
+      }
+      .flex-container-actions button {
+        padding: 8px 15px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+      .flex-container-actions button:first-child {
+        background-color: #ff6b6b;
+        color: white;
+      }
+      .flex-container-actions button:last-child {
+        background-color: #4ecdc4;
+        color: white;
+      }
+      .flex-container-actions button:hover {
+        opacity: 0.9;
+      }
+    </style>
 
         </section>
 
