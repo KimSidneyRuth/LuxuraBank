@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle individual update
     elseif (isset($_POST['update'])) {
         $id = intval($_POST['update']);
-        header("Location: editNews.php?id=$id");
+        header("Location: admin-nav.php?id=$id");
         exit();
     } else {
         header("Location: seeAllNews2.php?message=error");

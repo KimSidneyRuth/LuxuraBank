@@ -218,7 +218,7 @@ bottom:-12px;
 </nav>
 
 
-<?php include "editNews.php" ?>
+
          
                
    

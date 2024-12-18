@@ -111,7 +111,7 @@ $id = $_SESSION['id'];
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="admin-nav.php">
             <i class="bx bx-user"></i>
             <span class="links_name">Reports</span>
           </a>

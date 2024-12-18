@@ -293,10 +293,11 @@ $userImage = $userData['image'] ? 'uploaded_img/' . $userData['image'] : 'defaul
 
                         <div class="flex-item">
                             <!-- Checkbox for selecting news item -->
-                            <input type="checkbox" id="news-checkbox" name="delete_ids[]" value="<?php echo $id; ?>">
+                           
                             
                             <div class="flex-container-title">
                                 <h1 id="title"><?php echo htmlspecialchars($row["title"]); ?></h1>
+                                <input type="checkbox" id="news-checkbox" name="delete_ids[]" value="<?php echo $id; ?>">
                             </div>
                             <div class="flex-container-title">
                                 <p id="date">Date: <?php echo date("d/m/Y", strtotime($row["created"])); ?></p>

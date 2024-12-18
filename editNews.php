@@ -1,4 +1,5 @@
 <?php
+
 include "connection.php";
 
 if (!isset($_GET['id'])) {
@@ -31,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,20 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Edit Announcement</title>
     <style>
         /* General Styles */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
 /* Form Container */
-form {
+.editNews {
+    position: absolute;
+    top:150px;
+    left:480px;
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -130,8 +124,9 @@ a:hover {
     </style>
 </head>
 <body>
+    <div class ="editNews">
     <h1>Edit Announcement</h1>
-    <form action="" method="POST">
+    <form action="" method="POST" >
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($news['title']); ?>" required>
         <br><br>
@@ -143,5 +138,6 @@ a:hover {
         <button type="submit">Save Changes</button>
         <a href="seeAllNews2.php">Cancel</a>
     </form>
+</div>
 </body>
 </html>
